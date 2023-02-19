@@ -97,227 +97,227 @@ module.exports = [
     },
     {
         firstName: "Harry",
-        email: "",
+        email: "harrypotter@hogwarts.co.uk",
         user_id: 13,
         date_of_birth: "11/09/1998",
         date_joined: "07/02/2023",
-        avatar_url: ""
+        avatar_url: "https://upload.wikimedia.org/wikipedia/en/d/d7/Harry_Potter_character_poster.jpg"
     },
     {
-        firstName: "Gregory",
-        email: "",
+        firstName: "cedric",
+        email: "cedric_diggory@hogwarts.co.uk",
         user_id: 14,
         date_of_birth: "02/06/1972",
         date_joined: "06/02/2023",
-        avatar_url: ""
+        avatar_url: "https://imgix.bustle.com/rehost/2016/9/13/10356392-8231-4a53-abf9-d4a2d465077b.jpg?w=800&fit=crop&crop=faces&auto=format%2Ccompress"
     },
     {
         firstName: "Alice",
-        email: "",
+        email: "alice1995@skymails.com",
         user_id: 15,
         date_of_birth: "14/08/1995",
         date_joined: "04/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/5852981/pexels-photo-5852981.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
         firstName: "Anita",
-        email: "",
+        email: "anitaquinn@gmial.com",
         user_id: 16,
         date_of_birth: "01/11/1989",
         date_joined: "16/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1520760/pexels-photo-1520760.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Love",
-        email: "",
+        email: "love_quinn@goldbergs.com",
         user_id: 17,
         date_of_birth: "18/03/2004",
         date_joined: "01/02/2023",
-        avatar_url: ""
+        avatar_url: "https://stylecaster.com/wp-content/uploads/2021/10/Love-You-1.jpg?w=670"
     },
     {
         firstName: "Joe",
-        email: "",
+        email: "joe-goldberg@mooneys.com",
         user_id: 18,
         date_of_birth: "30/09/1979",
         date_joined: "17/01/2023",
-        avatar_url: ""
+        avatar_url: "https://www.tvguide.com/a/img/hub/2019/12/05/9cadb0bf-f87e-4383-ac1b-adf596690a15/you-reg.jpg"
     },
     {
         firstName: "Jonathan",
-        email: "",
+        email: "jonathan-moore@london.com",
         user_id: 19,
         date_of_birth: "26/05/1991",
         date_joined: "05/02/2023",
-        avatar_url: ""
+        avatar_url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/you-season-4-how-does-jonathan-moore-s-stalker-know-that-he-s-joe-goldberg-1675865091.jpg?crop=0.670xw:1.00xh;0.167xw,0&resize=1200:*"
     },
     {
         firstName: "Nick",
-        email: "",
+        email: "nick-alias@ymail.co.uk",
         user_id: 20,
         date_of_birth: "15/03/1995",
         date_joined: "09/01/2023",
-        avatar_url: ""
+        avatar_url: "https://media.vanityfair.com/photos/5e011fda6056aa0008852c5d/5:3/w_2000,h_1200,c_limit/you-season-2-penn-badgley-interview.jpg"
     },
     {
         firstName: "Paul",
-        email: "",
+        email: "paulsing@chaseltd.com",
         user_id: 21,
         date_of_birth: "28/05/1987",
         date_joined: "04/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Penny",
-        email: "",
+        email: "penny-wise@skymail.co.uk",
         user_id: 22,
         date_of_birth: "02/10/1979",
         date_joined: "12/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/573299/pexels-photo-573299.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Malcom",
-        email: "",
+        email: "mal@milkybar.co.uk",
         user_id: 23,
         date_of_birth: "23/06/1984",
         date_joined: "02/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Nia",
-        email: "",
+        email: "nia-tia@maria.com",
         user_id: 24,
         date_of_birth: "11/12/1991",
         date_joined: "15/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1102341/pexels-photo-1102341.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Tina",
-        email: "",
+        email: "tinaturner@skymail.com",
         user_id: 25,
         date_of_birth: "06/08/1980",
         date_joined: "01/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Yvonne",
-        email: "",
+        email: "yvonne162jwihd2@wildwest.co.uk",
         user_id: 26,
         date_of_birth: "19/01/1999",
         date_joined: "18/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/871495/pexels-photo-871495.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Merida",
-        email: "",
+        email: "merida@firefalls.co.uk",
         user_id: 27,
-        date_of_birth: "27/11/2004",
+        date_of_birth: "27/11/2002",
         date_joined: "27/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Meridith",
-        email: "",
+        email: "meredith@greysloan.com",
         user_id: 28,
         date_of_birth: "30/07/1983",
         date_joined: "23/01/2023",
-        avatar_url: ""
+        avatar_url: "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2015%2F09%2Fgreys-season-1.jpg"
     },
     {
         firstName: "Angus",
-        email: "",
+        email: "angusfergusson@waterways.com",
         user_id: 29,
         date_of_birth: "14/02/1993",
         date_joined: "20/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1139743/pexels-photo-1139743.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-        firstName: "Pete",
-        email: "",
+        firstName: "Lexie",
+        email: "lexie_grey@seattlegrace.com",
         user_id: 30,
         date_of_birth: "03/06/1978",
         date_joined: "26/01/2023",
-        avatar_url: ""
+        avatar_url: "https://people.com/thmb/Jbe5r1R2hZ05lk8tapbFM5qQTio=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(999x0:1001x2)/chyler-leigh-3-2000-fd5742e55acc4a50885046c89abec096.jpg"
     },
     {
         firstName: "Sky",
-        email: "",
+        email: "sky@skymail.com",
         user_id: 31,
         date_of_birth: "22/09/1996",
         date_joined: "24/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/2553653/pexels-photo-2553653.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Rain",
-        email: "",
+        email: "12rainclouds21@gmail.co.uk",
         user_id: 32,
         date_of_birth: "09/05/1984",
         date_joined: "08/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/713312/pexels-photo-713312.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Drew",
-        email: "",
+        email: "drewdrew@greens.com",
         user_id: 33,
         date_of_birth: "18/04/2000",
         date_joined: "12/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/60778/pexels-photo-60778.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Anne",
-        email: "",
+        email: "anniee@walkers.com",
         user_id: 34,
         date_of_birth: "01/11/1992",
         date_joined: "16/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1804514/pexels-photo-1804514.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Fergus",
-        email: "",
+        email: "fergus@fergus.com",
         user_id: 35,
         date_of_birth: "26/08/1981",
         date_joined: "16/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/236187/pexels-photo-236187.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Frank",
-        email: "",
+        email: "frank_624@waterfalls.au",
         user_id: 36,
         date_of_birth: "13/07/1998",
         date_joined: "01/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1002406/pexels-photo-1002406.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Samuel",
-        email: "",
+        email: "samuelreed129rnpa@skifi.com",
         user_id: 37,
         date_of_birth: "07/12/1976",
         date_joined: "06/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/4350057/pexels-photo-4350057.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Arwen",
-        email: "",
+        email: "awen@violet.co.uk",
         user_id: 38,
         date_of_birth: "31/03/1988",
         date_joined: "09/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1496647/pexels-photo-1496647.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Viktor",
-        email: "",
+        email: "viktorwild@skyfalls.com",
         user_id: 39,
         date_of_birth: "04/12/1997",
         date_joined: "17/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/2698935/pexels-photo-2698935.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Vicky",
-        email: "",
+        email: "vicky17rhfd8@snailmail.co.uk",
         user_id: 40,
         date_of_birth: "16/05/1994",
         date_joined: "03/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/944002/pexels-photo-944002.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Anita",
@@ -417,35 +417,35 @@ module.exports = [
     },
     {
         firstName: "Rebecca",
-        email: "",
+        email: "rebbie@skyfalls.com",
         user_id: 53,
         date_of_birth: "31/07/1994",
         date_joined: "05/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/3220360/pexels-photo-3220360.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-        firstName: "Rachael",
-        email: "",
+        firstName: "Rachel",
+        email: "rachelgreene@friends.com",
         user_id: 54,
         date_of_birth: "04/05/1978",
         date_joined: "13/02/2023",
-        avatar_url: ""
+        avatar_url: "https://staticg.sportskeeda.com/editor/2022/01/2219d-16413001979766-1920.jpg"
     },
     {
         firstName: "Eimear",
-        email: "",
+        email: "eimear@earmail.com",
         user_id: 55,
         date_of_birth: "20/01/2085",
         date_joined: "08/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/3828268/pexels-photo-3828268.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Caoimhe",
-        email: "",
+        email: "caoimhe@disneydust.com",
         user_id: 56,
         date_of_birth: "11/09/1992",
         date_joined: "06/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/789822/pexels-photo-789822.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Mitch",
@@ -561,11 +561,11 @@ module.exports = [
     },
     {
         firstName: "Wanda",
-        email: "",
+        email: "wandamaximoff@marvel.com",
         user_id: 71,
         date_of_birth: "14/06/1984",
         date_joined: "13/01/2023",
-        avatar_url: ""
+        avatar_url: "https://hips.hearstapps.com/hmg-prod/images/image-11-1610745655.png?crop=1.00xw:0.835xh;0,0.0794xh&resize=980:*"
     },
     {
         firstName: "Stewart",
@@ -585,11 +585,11 @@ module.exports = [
     },
     {
         firstName: "Francesca",
-        email: "",
+        email: "franny@waterworlds.com",
         user_id: 74,
         date_of_birth: "07/07/1993",
         date_joined: "31/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/2697242/pexels-photo-2697242.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Jake",
@@ -665,195 +665,195 @@ module.exports = [
     },
     {
         firstName: "Betty",
-        email: "",
+        email: "bettycooper@riverdale.com",
         user_id: 84,
         date_of_birth: "17/02/1997",
         date_joined: "27/01/2023",
-        avatar_url: ""
+        avatar_url: "https://static.wikia.nocookie.net/riverdalearchie/images/7/79/RD-Betty-Cooper.jpg/revision/latest?cb=20220516160955"
     },
     {
         firstName: "Veronica",
-        email: "",
+        email: "veronicalodge@riverdale.com",
         user_id: 85,
-        date_of_birth: "23/12/1973",
+        date_of_birth: "23/12/1997",
         date_joined: "25/01/2023",
-        avatar_url: ""
+        avatar_url: "https://assets.teenvogue.com/photos/5b1fd369b4a2e66e33b0abbd/2:3/w_1329,h_1994,c_limit/tout.jpg"
     },
     {
         firstName: "Forsythe",
-        email: "",
+        email: "jugheadjones@riverdale.com",
         user_id: 86,
         date_of_birth: "16/02/1998",
         date_joined: "19/01/2023",
-        avatar_url: ""
+        avatar_url: "https://cdn.images.express.co.uk/img/dynamic/20/590x/secondary/1339449.jpg"
     },
     {
         firstName: "Cheryl",
-        email: "",
+        email: "cherylblossom@riverdale.com",
         user_id: 87,
-        date_of_birth: "29/11/1985",
+        date_of_birth: "29/11/1995",
         date_joined: "01/02/2023",
-        avatar_url: ""
+        avatar_url: "https://assets.puzzlefactory.pl/puzzle/276/454/original.webp"
     },
     {
         firstName: "Archie",
-        email: "",
+        email: "archieandrews@riverdale.com",
         user_id: 88,
-        date_of_birth: "08/05/1979",
+        date_of_birth: "08/05/1996",
         date_joined: "05/02/2023",
-        avatar_url: ""
+        avatar_url: "https://static.wikia.nocookie.net/riverdalearchie/images/f/fb/RD-Archie-Andrews.jpg/revision/latest?cb=20220516153057"
     },
     {
         firstName: "Reggie",
-        email: "",
+        email: "reggiemantle@riverdale.com",
         user_id: 89,
         date_of_birth: "02/07/2001",
         date_joined: "16/01/2023",
-        avatar_url: ""
+        avatar_url: "https://static.wikia.nocookie.net/p__/images/8/8b/Reggie-riverdale.jpg/revision/latest?cb=20220209130705&path-prefix=protagonist"
     },
     {
         firstName: "Chad",
-        email: "",
+        email: "chadgekko@riverdale.com",
         user_id: 90,
         date_of_birth: "11/12/1987",
         date_joined: "18/02/2023",
-        avatar_url: ""
+        avatar_url: "https://static.wikia.nocookie.net/riverdalearchie/images/1/11/RD-S5-Chad-Gekko.jpg/revision/latest?cb=20210205223031"
     },
     {
-        firstName: "PJ",
-        email: "",
+        firstName: "Percival",
+        email: "percivalpickens@rivervale.com",
         user_id: 91,
         date_of_birth: "21/09/1995",
         date_joined: "28/01/2023",
-        avatar_url: ""
+        avatar_url: "https://www.j-14.com/wp-content/uploads/2022/03/Percival-riverdale.jpg?resize=800%2C675&quality=86&strip=all"
     },
     {
         firstName: "Cath",
-        email: "",
+        email: "cathybates162@hogwarts.com",
         user_id: 92,
         date_of_birth: "14/04/1976",
         date_joined: "07/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1091659/pexels-photo-1091659.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Newt",
-        email: "",
+        email: "newtscamander@fantasticbeasts.com",
         user_id: 93,
         date_of_birth: "26/03/1982",
         date_joined: "14/02/2023",
-        avatar_url: ""
+        avatar_url: "https://upload.wikimedia.org/wikipedia/en/c/c5/Newt_Scamander_in_New_York.jpg"
     },
     {
         firstName: "Rinwell",
-        email: "",
+        email: "rinwell@arise.com",
         user_id: 94,
         date_of_birth: "07/10/1993",
         date_joined: "12/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/813940/pexels-photo-813940.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Polly",
-        email: "",
+        email: "pollypocket@nostalgia.com",
         user_id: 95,
         date_of_birth: "18/01/1990",
         date_joined: "16/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/220052/pexels-photo-220052.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Peter",
-        email: "",
+        email: "fortyquinn@anavrin.com",
         user_id: 96,
         date_of_birth: "19/02/2001",
         date_joined: "13/01/2023",
-        avatar_url: ""
+        avatar_url: "https://variety.com/wp-content/uploads/2019/12/jamesscully_interview_v3.00_00_05_09.still009.jpg"
     },
     {
         firstName: "Carla",
-        email: "",
+        email: "carlamae@maefield.co.uk",
         user_id: 97,
         date_of_birth: "03/06/1984",
         date_joined: "18/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/3283568/pexels-photo-3283568.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Molly",
-        email: "",
+        email: "mollymae2002@peachtrea.com",
         user_id: 98,
         date_of_birth: "19/08/2002",
         date_joined: "18/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/61100/pexels-photo-61100.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Miley",
-        email: "",
+        email: "mylee@wandacore.com",
         user_id: 99,
         date_of_birth: "22/12/1991",
         date_joined: "18/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1130624/pexels-photo-1130624.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Hank",
-        email: "",
+        email: "hanklreed@ybase.com",
         user_id: 100,
         date_of_birth: "06/09/1978",
         date_joined: "02/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1559487/pexels-photo-1559487.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "John",
-        email: "",
+        email: "johnboy@liveserver.com",
         user_id: 101,
         date_of_birth: "13/05/1999",
         date_joined: "06/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/5303044/pexels-photo-5303044.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Jenny",
-        email: "",
+        email: "jennybany12@swerve.com",
         user_id: 102,
         date_of_birth: "25/10/1989",
         date_joined: "08/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1848886/pexels-photo-1848886.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Holly",
-        email: "",
+        email: "hollypolly@catmail.com",
         user_id: 103,
         date_of_birth: "09/03/1972",
         date_joined: "08/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1848471/pexels-photo-1848471.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-        firstName: "Amrite",
-        email: "",
+        firstName: "Amy",
+        email: "amyfamey@gsnail.com",
         user_id: 104,
         date_of_birth: "01/11/1997",
         date_joined: "03/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/2709388/pexels-photo-2709388.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Aurora",
-        email: "",
+        email: "aurora@sleeper.com",
         user_id: 105,
         date_of_birth: "16/07/2004",
         date_joined: "10/01/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/5704720/pexels-photo-5704720.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Cindy",
-        email: "",
+        email: "cindykim@kpop.com",
         user_id: 106,
         date_of_birth: "02/12/1999",
         date_joined: "04/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/1073567/pexels-photo-1073567.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-        firstName: "Jasmine",
-        email: "",
+        firstName: "Jas",
+        email: "jasminefields@chequers.co.uk",
         user_id: 107,
         date_of_birth: "09/05/1976",
         date_joined: "11/02/2023",
-        avatar_url: ""
+        avatar_url: "https://images.pexels.com/photos/354972/pexels-photo-354972.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         firstName: "Morticia",
