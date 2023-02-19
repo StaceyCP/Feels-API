@@ -395,7 +395,7 @@ module.exports = [
         fullName: "Karla Barnett",
         email: "karlaaa@barn.com",
         registrationNumber: "CP901834",
-        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "friday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
+        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
         avatarURL: "https://images.pexels.com/photos/3783725/pexels-photo-3783725.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
@@ -416,49 +416,49 @@ module.exports = [
         fullName: "Maddison Yu",
         email: "myu@myu.com",
         registrationNumber: "CP713245",
-        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "friday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
+        availableHours: [{day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "friday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
         avatarURL: "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
         fullName: "Jeremy Bearimy",
         email: "jeremybearimy@timeloop.com",
         registrationNumber: "CP968142",
-        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "friday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
+        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "friday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
         avatarURL: "https://images.pexels.com/photos/262391/pexels-photo-262391.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
         fullName: "Eleanor Shellstrop",
         email: "eleanor@yabasic.com",
         registrationNumber: "CP417860",
-        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "friday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
+        availableHours: [{day: "monday", hours: [13, 15]}, {day: "tuesday", hours: [13, 16]}, {day: "wednesday", hours: [13, 17]}, {day: "thursday", hours: [13, 15]}, {day: "friday", hours: [13, 15]}, {day: "saturday", hours: [13, 15]}, {day: "sunday", hours: [13, 16]}],
         avatarURL: "https://static.wikia.nocookie.net/thegoodplace/images/9/9e/4eleanor.jpg/revision/latest?cb=20190914140736"
     },
     {
         fullName: "Simone Garnett",
         email: "simon@thegoodplace.com",
         registrationNumber: "CP950284",
-        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "friday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
+        availableHours: [{day: "monday", hours: [10, 18]}, {day: "tuesday", hours: [10, 18]}, {day: "wednesday", hours: [10, 18]}, {day: "thursday", hours: [10, 18]}, {day: "friday", hours: [10, 18]}, {day: "saturday", hours: [10, 18]}, {day: "sunday", hours: [10, 18]}],
         avatarURL: "https://images.pexels.com/photos/9815361/pexels-photo-9815361.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
         fullName: "Alex Watson",
         email: "johndoe42@hotmail.com",
-        registrationNumber: "CP648137",
-        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "friday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
+        registrationNumber: "CP648107",
+        availableHours: [{day: "monday", hours: [10, 18]}, {day: "tuesday", hours: [10, 18]}, {day: "wednesday", hours: [10, 15]}, {day: "thursday", hours: [10, 15]}, {day: "friday", hours: [10, 15]}],
         avatarURL: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
         fullName: "Drew Mullen",
         email: "drewmullan1234@ymail.com",
         registrationNumber: "CP201534",
-        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "friday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
+        availableHours: [{day: "monday", hours: [10, 15]}, {day: "tuesday", hours: [10, 15]}, {day: "wednesday", hours: [10, 15]}, {day: "thursday", hours: [10, 15]}, {day: "friday", hours: [10, 15]}, {day: "saturday", hours: [10, 15]}, {day: "sunday", hours: [10, 15]}],
         avatarURL: "https://images.pexels.com/photos/1270076/pexels-photo-1270076.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
-        fullName: "Andrew Day", hours: [13, 20],
+        fullName: "Andrew Day",
         email: "a.day123@ymail.co.uk",
         registrationNumber: "CP907361",
-        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "friday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
+        availableHours: [{day: "monday", hours: [10, 15]}, {day: "tuesday", hours: [10, 15]}, {day: "wednesday", hours: [10, 15]}, {day: "thursday", hours: [10, 15]}, {day: "friday", hours: [10, 15]}, {day: "saturday", hours: [10, 15]}, {day: "sunday", hours: [13, 20]}],
         avatarURL: "https://images.pexels.com/photos/1300402/pexels-photo-1300402.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
@@ -486,21 +486,21 @@ module.exports = [
         fullName: "Carol Danvers",
         email: "caroldanvers@marvel.com",
         registrationNumber: "CP385692",
-        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "friday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
+        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
         avatarURL: "https://images.pexels.com/photos/6311661/pexels-photo-6311661.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
         fullName: "Phil Coulson",
         email: "phil.coulson@shield.com",
         registrationNumber: "CP731069",
-        availableHours: [{day: "monday", hours: [13, 20]}, {day: "tuesday", hours: [13, 20]}, {day: "wednesday", hours: [13, 20]}, {day: "thursday", hours: [13, 20]}, {day: "friday", hours: [13, 20]}, {day: "saturday", hours: [13, 20]}, {day: "sunday", hours: [13, 20]}],
+        availableHours: [{day: "monday", hours: [17, 20]}, {day: "tuesday", hours: [17, 20]}, {day: "wednesday", hours: [16, 20]}, {day: "thursday", hours: [18, 20]}, {day: "friday", hours: [18, 19]}, {day: "saturday", hours: [, 20]}, {day: "sunday", hours: [13, 20]}],
         avatarURL: "https://images.pexels.com/photos/15037720/pexels-photo-15037720.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
         fullName: "Tony Stark",
         email: "tony@starkindustries.com",
         registrationNumber: "CP542891",
-        availableHours: [{day: "monday", hours: [14, 20]}, {day: "tuesday", hours: [14, 20]}, {day: "wednesday", hours: [14, 20]}, {day: "thursday", hours: [14, 20]}, {day: "friday", hours: [14, 20]}, {day: "saturday", hours: [14, 20]}, {day: "sunday", hours: [14, 20]}],
+        availableHours: [{day: "monday", hours: [14, 20]}, {day: "tuesday", hours: [14, 20]}, {day: "wednesday", hours: [14, 20]}, {day: "thursday", hours: [14, 20]}, {day: "friday", hours: [14, 20]}],
         avatarURL: "https://static.wikia.nocookie.net/marvelcentral/images/9/97/Tony-Stark.jpg/revision/latest?cb=20130429010603"
     },
     {
