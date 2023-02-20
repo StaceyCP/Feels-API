@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const ENV = process.env.NODE_ENV || "development";
 require("dotenv").config({ path: `${__dirname}/../.env.${ENV}` });
 const url = process.env.MONG_URI;
-console.log(url);
 
 mongoose.set("strictQuery", false);
 

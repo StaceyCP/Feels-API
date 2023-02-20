@@ -13,8 +13,10 @@ afterAll(() => {
   return mongoose.connection.close();
 });
 
-describe("Test test suite", () => {
-  test("Husky testing", () => {
-    expect("husky").toBe("husky");
+describe("Professionals - end points", () => {
+  describe("Professionals POST requests", () => {
+    test("should return 201 status code", () => {
+      return request(app).post("/api/professionals").send({}).expect(201);
+    });
   });
 });
