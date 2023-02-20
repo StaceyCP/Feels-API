@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const profesionalSchema = new Schema({
+const professionalSchema = new Schema({
   fullName: { type: String, required: true },
   email: { type: String, required: true },
   registrationNumber: { type: String, required: true },
@@ -9,6 +9,6 @@ const profesionalSchema = new Schema({
   avatarURL: { type: String, required: true },
 });
 
-const Professional = mongoose.model("Professional", profesionalSchema);
+const Professional = mongoose.model("Professional", professionalSchema);
 
 module.exports = Professional;
