@@ -1,6 +1,5 @@
 const { db } = require("../connection");
 const User = require("../schemas/userSchema");
-const mongoose = require("mongoose");
 
 const seed = ({ usersData }) => {
   return User.deleteMany({})
