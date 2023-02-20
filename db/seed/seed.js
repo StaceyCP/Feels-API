@@ -1,15 +1,9 @@
 const { db } = require("../connection");
 const Professional = require("../profesionalSchema");
 const professionalsData = require("../data/test-data/professionalsData");
-const mongoose = require("mongoose");
 
 function seedProfessionals(data) {
-  const collections = Object.keys(mongoose.connections[0].collections);
-  let promise = new Promise(() => {});
-  if (collections.includes("professionals")) {
-    promise = Professional.collection.drop();
-  }
-  return promise
+  return Professional.deleteMany({})
     .then(() => {
       console.log("Droped collection");
       return Professional.createCollection();
@@ -26,4 +20,4 @@ function seedProfessionals(data) {
     });
 }
 
-seedProfessionals(professionalsData);
+module.exports = seedProfessionals;
