@@ -1,3 +1,3 @@
-exports.professionalsTestData = require("./professionalsData");
-exports.moodTrackingTestData = require("./moodTrackingData");
-exports.usersTestData = require("./usersData");
+exports.professionalsData = require("./professionalsData");
+exports.moodTrackingData = require("./moodTrackingData");
+exports.usersData = require("./usersData");

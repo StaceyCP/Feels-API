@@ -1,9 +1,12 @@
 const mongoose = require("mongoose");
+const ENV = process.env.NODE_ENV || "development";
+require("dotenv").config({ path: `${__dirname}/../.env.${ENV}` });
+const url = process.env.MONG_URI;
 
 mongoose.set("strictQuery", false);
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/feels-data")
+  .connect(url)
   .then(() => {
     console.log("Connected to Local DB");
   })
