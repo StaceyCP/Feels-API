@@ -42,7 +42,6 @@ describe("GET /api/users/:user_id", () => {
       .get("/api/users/99999")
       .expect(404)
       .then(({ body }) => {
-        console.log(body);
         const { message } = body;
         expect(message).toBe("id not found");
       });
