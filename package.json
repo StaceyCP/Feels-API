@@ -4,7 +4,8 @@
   "main": "app.js",
   "scripts": {
     "test": "",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "seed": "node db/seed/run-seed.js"
   },
   "author": "",
   "license": "ISC",

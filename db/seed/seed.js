@@ -1,14 +1,16 @@
 const { db } = require("../connection");
-const Professional = require("../profesionalSchema");
+const User = require("../schemas/userSchema");
+const Professional = require("../schemas/profesionalSchema");
 
-async function seedProfessionals({ professionalsData }) {
+async function seed({ professionalsData, usersData }) {
   try {
+    await User.deleteMany({});
     await Professional.deleteMany({});
-    await Professional.createCollection();
-    await Professional.insertMany(data);
+    await User.insertMany(usersData);
+    await Professional.insertMany(professionalsData);
   } catch (err) {
     console.log(err);
   }
 }
 
-module.exports = seedProfessionals;
+module.exports = seed;
