@@ -1,7 +1,7 @@
 const { db } = require("../connection");
 const Professional = require("../profesionalSchema");
 
-async function seedProfessionals(data) {
+async function seedProfessionals({ professionalsData }) {
   try {
     await Professional.deleteMany({});
     await Professional.createCollection();

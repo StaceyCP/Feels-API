@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const profesionalSchema = new Schema({
-  fullName: String,
-  email: String,
-  registrationNumber: String,
-  availableHours: [{ day: String, hours: [Number] }],
-  avatarURL: String,
+  fullName: { type: String, required: true },
+  email: { type: String, required: true },
+  registrationNumber: { type: String, required: true },
+  availableHours: { type: Array, required: true },
+  avatarURL: { type: String, required: true },
 });
 
 const Professional = mongoose.model("Professional", profesionalSchema);
