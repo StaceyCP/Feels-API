@@ -951,7 +951,7 @@ module.exports = [
       "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    username: "Frank",
+    username: "Frank2",
     email: "frankie@fandb.co.uk",
     date_of_birth: "07/06/1989",
     date_joined: "12/01/2023",
@@ -983,7 +983,7 @@ module.exports = [
       "https://images.pexels.com/photos/3812720/pexels-photo-3812720.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    username: "Josh",
+    username: "Josh2",
     email: "joshpeck@nickelodeon.com",
     date_of_birth: "18/04/1984",
     date_joined: "07/01/2023",
