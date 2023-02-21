@@ -49,4 +49,22 @@ const addNewUser = async ({ username, email, date_of_birth, avatar_url }) => {
   return insertedUser;
 };
 
-module.exports = { fetchUser, addNewUser, postNewProfessional };
+const fetchProfessional = (registration) => {
+  return Professional.findOne({ registrationNumber: registration }).then(
+    (professional) => {
+      if (!professional) {
+        return Promise.reject({
+          status: 404,
+          message: "Professional not found",
+        });
+      } else return professional;
+    }
+  );
+};
+
+module.exports = {
+  fetchUser,
+  addNewUser,
+  postNewProfessional,
+  fetchProfessional,
+};
