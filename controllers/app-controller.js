@@ -2,6 +2,7 @@ const {
   fetchUser,
   addNewUser,
   postNewProfessional,
+  fetchMoodData,
 } = require("../models/app-model");
 
 const addNewProfessional = (req, res, next) => {
@@ -44,4 +45,20 @@ const postUser = (req, res, next) => {
     });
 };
 
-module.exports = { getUserById, postUser, addNewProfessional };
+const getMoodDataByUsername = (req, res, next) => {
+  const { username } = req.params;
+  fetchMoodData(username)
+    .then((moodData) => {
+      res.status(200).send({ moodData });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+module.exports = {
+  getUserById,
+  postUser,
+  addNewProfessional,
+  getMoodDataByUsername,
+};
