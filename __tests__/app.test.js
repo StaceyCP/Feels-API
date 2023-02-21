@@ -296,6 +296,31 @@ describe("POST /api/users", () => {
   });
 });
 
+describe("GET /api/mood_data/:username", () => {
+  it("should return status 200 with the corect mood data ", () => {
+    return request(app)
+      .get("/api/mood_data/Tom")
+      .expect(200)
+      .then(({ body }) => {
+        const { moodData } = body;
+        expect(moodData).toHaveProperty("username", "Tom");
+        expect(moodData).toHaveProperty("date_joined", "03/02/2023");
+        expect(moodData).toHaveProperty("mood_data");
+        expect(Array.isArray(moodData.mood_data)).toBe(true);
+        expect(moodData.mood_data[0]).toEqual({ "03/02/2023": 1 });
+      });
+  });
+  it("should return 404 if username is not found", () => {
+    return request(app)
+      .get("/api/mood_data/9999")
+      .expect(404)
+      .then(({ body }) => {
+        const { message } = body;
+        expect(message).toBe("username not found");
+      });
+  });
+});
+
 describe("POST /api/mood_data/", () => {
   it("should return 201 with the new moodData object", () => {
     const newUser = {

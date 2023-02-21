@@ -3,6 +3,7 @@ const {
   addNewUser,
   postNewProfessional,
   fetchProfessional,
+  fetchMoodData,
   addNewMoodData,
 } = require("../models/app-model");
 
@@ -58,6 +59,17 @@ const getProfessional = (req, res, next) => {
     });
 };
 
+const getMoodDataByUsername = (req, res, next) => {
+  const { username } = req.params;
+  fetchMoodData(username)
+    .then((moodData) => {
+      res.status(200).send({ moodData });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
 const postMoodData = async (req, res, next) => {
   const {
     body: { username },
@@ -80,5 +92,6 @@ module.exports = {
   postUser,
   addNewProfessional,
   getProfessional,
+  getMoodDataByUsername,
   postMoodData,
 };
