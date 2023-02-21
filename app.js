@@ -4,6 +4,8 @@ const {
   handleServerErrors,
   handleMongoErrors,
   handleCustomErrors,
+  handleUsersErrors,
+  handleValidationErrors,
 } = require("./errors");
 const app = express();
 
@@ -13,6 +15,7 @@ app.use("/api", apiRouter);
 
 app.use(handleCustomErrors);
 app.use(handleMongoErrors);
-app.use(handleServerErrors);
+app.use(handleValidationErrors);
+app.use(handleServerErrors); // always at the bottom
 
 module.exports = { app };
