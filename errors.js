@@ -10,6 +10,8 @@ exports.handleMongoErrors = (err, req, res, next) => {
   if (err._message) {
     const errorFields = Object.keys(err.errors);
     res.status(400).send({ message: "400 - Bad Request", errorFields });
+  } else if (err.message && !err.status && !err.code) {
+    res.status(400).send({ message: err.message });
   } else {
     next(err);
   }

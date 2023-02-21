@@ -215,7 +215,7 @@ describe("GET /api/users/:username", () => {
       .expect(404)
       .then(({ body }) => {
         const { message } = body;
-        expect(message).toBe("id not found");
+        expect(message).toBe("username not found");
       });
   });
 });
@@ -292,6 +292,64 @@ describe("POST /api/users", () => {
       .then(({ body }) => {
         const { message } = body;
         expect(message).toBe("400 - Bad Request");
+      });
+  });
+});
+
+describe("POST /api/mood_data/", () => {
+  it("should return 201 with the new moodData object", () => {
+    const newUser = {
+      username: "TestName",
+      email: "testEmail@email.com",
+      date_of_birth: "01/01/2001",
+      avatar_url: "http://testurl.com",
+    };
+    const todayDate = new Date()
+      .toISOString()
+      .slice(0, 10)
+      .split("-")
+      .reverse()
+      .join("/");
+
+    return request(app)
+      .post("/api/users")
+      .send(newUser)
+      .then(() => {
+        return request(app)
+          .post("/api/mood_data")
+          .send({ username: newUser.username })
+          .expect(201);
+      })
+      .then(({ body }) => {
+        const { moodData } = body;
+        expect(moodData).toHaveProperty("username", "TestName");
+        expect(moodData).toHaveProperty("date_joined", todayDate);
+        expect(moodData).toHaveProperty("mood_data");
+        expect(moodData.mood_data).toEqual([]);
+      });
+  });
+
+  it("should return 404 if the username does not exist", () => {
+    return request(app)
+      .post("/api/mood_data")
+      .send({ username: "jhadkjhasdkjha" })
+      .expect(404)
+      .then(({ body }) => {
+        const { message } = body;
+        expect(message).toBe("username not found");
+      });
+  });
+
+  it("should return 400 if the data type for username is incorrect", () => {
+    return request(app)
+      .post("/api/mood_data")
+      .send({ username: { username: "ahdsjdid" } })
+      .expect(400)
+      .then(({ body }) => {
+        const { message } = body;
+        expect(message).toBe(
+          'Cast to string failed for value "{ username: \'ahdsjdid\' }" (type Object) at path "username" for model "User"'
+        );
       });
   });
 });
