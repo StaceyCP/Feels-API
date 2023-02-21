@@ -258,3 +258,9 @@ describe("POST /api/users", () => {
       });
   });
 });
+
+// describe("PATCH - Mood Data", () => {
+//   test("Should return 200 status code", () => {
+//     return request(app).patch("/api/mood_data/Tom").send({}).expect(200);
+//   });
+// });
