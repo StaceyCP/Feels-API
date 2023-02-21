@@ -1,8 +1,8 @@
-const { fetchUser } = require("../models/app-model");
+const { fetchUser, addNewUser } = require("../models/app-model");
 
 const getUserById = (req, res, next) => {
-  const { user_id } = req.params;
-  fetchUser(user_id)
+  const { username } = req.params;
+  fetchUser(username)
     .then((user) => {
       res.status(200).send({ user });
     })
@@ -11,4 +11,16 @@ const getUserById = (req, res, next) => {
     });
 };
 
-module.exports = { getUserById };
+const postUser = (req, res, next) => {
+  const { body } = req;
+  addNewUser(body)
+    .then((user) => {
+      res.status(201).send({ user });
+    })
+    .catch((err) => {
+      console.log(err._message);
+      next(err);
+    });
+};
+
+module.exports = { getUserById, postUser };
