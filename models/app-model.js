@@ -50,6 +50,19 @@ const addNewUser = async ({ username, email, date_of_birth, avatar_url }) => {
   return insertedUser;
 };
 
+const fetchProfessional = (registration) => {
+  return Professional.findOne({ registrationNumber: registration }).then(
+    (professional) => {
+      if (!professional) {
+        return Promise.reject({
+          status: 404,
+          message: "Professional not found",
+        });
+      } else return professional;
+    }
+  );
+};
+
 const fetchMoodData = (username) => {
   return UserMood.findOne({ username }).then((data) => {
     if (data === null)
@@ -58,4 +71,10 @@ const fetchMoodData = (username) => {
   });
 };
 
-module.exports = { fetchUser, addNewUser, postNewProfessional, fetchMoodData };
+module.exports = {
+  fetchUser,
+  addNewUser,
+  postNewProfessional,
+  fetchMoodData,
+  fetchProfessional,
+};
