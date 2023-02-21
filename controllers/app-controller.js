@@ -1,4 +1,26 @@
-const { fetchUser, addNewUser } = require("../models/app-model");
+const {
+  fetchUser,
+  addNewUser,
+  postNewProfessional,
+} = require("../models/app-model");
+
+const addNewProfessional = (req, res, next) => {
+  const { fullName, email, registrationNumber, availableHours, avatarURL } =
+    req.body;
+  postNewProfessional(
+    fullName,
+    email,
+    registrationNumber,
+    availableHours,
+    avatarURL
+  )
+    .then((newProfessional) => {
+      res.status(201).send({ newProfessional });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
 
 const getUserById = (req, res, next) => {
   const { username } = req.params;
@@ -22,4 +44,4 @@ const postUser = (req, res, next) => {
     });
 };
 
-module.exports = { getUserById, postUser };
+module.exports = { getUserById, postUser, addNewProfessional };

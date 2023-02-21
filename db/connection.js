@@ -8,7 +8,7 @@ mongoose.set("strictQuery", false);
 mongoose
   .connect(url)
   .then(() => {
-    console.log("Connected to Local DB");
+    console.log("Connected to Local DB using");
   })
   .catch((err) => {
     console.log("Oops" + err);

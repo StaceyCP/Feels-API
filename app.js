@@ -2,6 +2,8 @@ const apiRouter = require("./routes/apiRouter");
 const express = require("express");
 const {
   handleServerErrors,
+  handleMongoErrors,
+  handleCustomErrors,
   handleUsersErrors,
   handleValidationErrors,
 } = require("./errors");
@@ -11,7 +13,8 @@ app.use(express.json());
 
 app.use("/api", apiRouter);
 
-app.use(handleUsersErrors);
+app.use(handleCustomErrors);
+app.use(handleMongoErrors);
 app.use(handleValidationErrors);
 app.use(handleServerErrors); // always at the bottom
 
