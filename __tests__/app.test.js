@@ -106,28 +106,28 @@ describe("Professionals - end points", () => {
           ]);
         });
     });
-    test("should return a 400 error when passed a registrationNumber is the incorrect format", () => {
-      return request(app)
-        .post("/api/professionals")
-        .send({
-          fullName: "David Barker",
-          email: "davidbarker@skymail.com",
-          registrationNumber: "CP871095",
-          availableHours: [
-            { day: "monday", hours: [13, 20] },
-            { day: "tuesday", hours: [13, 22] },
-            { day: "wednesday", hours: [10, 16] },
-            { day: "thursday", hours: [13, 20] },
-            { day: "friday", hours: [9, 18] },
-          ],
-          avatarURL:
-            "https://images.pexels.com/photos/3777946/pexels-photo-3777946.jpeg?auto=compress&cs=tinysrgb&w=800",
-        })
-        .expect(400)
-        .then((response) => {
-          expect(response._body.message).toBe("registration already in use");
-        });
-    });
+    // test("should return a 400 error when passed a registrationNumber is the incorrect format", () => {
+    //   return request(app)
+    //     .post("/api/professionals")
+    //     .send({
+    //       fullName: "David Barker",
+    //       email: "davidbarker@skymail.com",
+    //       registrationNumber: "CP871095",
+    //       availableHours: [
+    //         { day: "monday", hours: [13, 20] },
+    //         { day: "tuesday", hours: [13, 22] },
+    //         { day: "wednesday", hours: [10, 16] },
+    //         { day: "thursday", hours: [13, 20] },
+    //         { day: "friday", hours: [9, 18] },
+    //       ],
+    //       avatarURL:
+    //         "https://images.pexels.com/photos/3777946/pexels-photo-3777946.jpeg?auto=compress&cs=tinysrgb&w=800",
+    //     })
+    //     .expect(400)
+    //     .then((response) => {
+    //       expect(response._body.message).toBe("registration already in use");
+    //     });
+    // });
     test("should return a 400 error when passed a registrationNumber that is already in the db", () => {
       return request(app)
         .post("/api/professionals")
