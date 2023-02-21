@@ -89,4 +89,36 @@ describe("POST /api/users", () => {
         expect(message).toBe("User validation failed");
       });
   });
+  it("should return 422 error if the username is not unique", () => {
+    const newUser = {
+      username: "Tom",
+      email: "testEmail@email.com",
+      date_of_birth: "01/01/2001",
+      avatar_url: "http://testurl.com",
+    };
+    return request(app)
+      .post("/api/users")
+      .send(newUser)
+      .expect(422)
+      .then(({ body }) => {
+        const { message } = body;
+        expect(message).toBe("Key must be unique");
+      });
+  });
+  it("should return 400 error if a key has incorrect data type", () => {
+    const newUser = {
+      username: "TestUser",
+      email: { email: "testEmail@email.com" },
+      date_of_birth: "01/01/2001",
+      avatar_url: "http://testurl.com",
+    };
+    return request(app)
+      .post("/api/users")
+      .send(newUser)
+      .expect(400)
+      .then(({ body }) => {
+        const { message } = body;
+        expect(message).toBe("User validation failed");
+      });
+  });
 });
