@@ -1,5 +1,6 @@
 const Professional = require("../db/schemas/professionalSchema");
 const User = require("../db/schemas/userSchema");
+const UserMood = require("../db/schemas/userMoodSchema");
 
 const postNewProfessional = (
   fullName,
@@ -49,4 +50,31 @@ const addNewUser = async ({ username, email, date_of_birth, avatar_url }) => {
   return insertedUser;
 };
 
-module.exports = { fetchUser, addNewUser, postNewProfessional };
+const fetchProfessional = (registration) => {
+  return Professional.findOne({ registrationNumber: registration }).then(
+    (professional) => {
+      if (!professional) {
+        return Promise.reject({
+          status: 404,
+          message: "Professional not found",
+        });
+      } else return professional;
+    }
+  );
+};
+
+const fetchMoodData = (username) => {
+  return UserMood.findOne({ username }).then((data) => {
+    if (data === null)
+      return Promise.reject({ status: 404, message: "username not found" });
+    return data;
+  });
+};
+
+module.exports = {
+  fetchUser,
+  addNewUser,
+  postNewProfessional,
+  fetchMoodData,
+  fetchProfessional,
+};
