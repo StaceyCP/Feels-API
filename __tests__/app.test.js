@@ -298,7 +298,7 @@ describe("POST /api/users", () => {
 
 describe("Mood Data Endpoints:", () => {
   describe("GET /api/mood_data/:username", () => {
-    it("should return status 200 with the corect mood data ", () => {
+    it("should return status 200 with the correct mood data ", () => {
       return request(app)
         .get("/api/mood_data/Tom")
         .expect(200)
@@ -321,9 +321,95 @@ describe("Mood Data Endpoints:", () => {
         });
     });
   });
-  // describe("PATCH - Mood Data", () => {
-  //   test("Should return 200 status code", () => {
-  //     return request(app).patch("/api/mood_data/Tom").send({}).expect(200);
-  //   });
-  // });
+  describe("PATCH - Mood Data", () => {
+    test("Should return 200 status code", () => {
+      return request(app)
+        .patch("/api/mood_data/Tom")
+        .send({ "21/02/2023": 3 })
+        .expect(200);
+    });
+    test("Should return updated user object when new mood data added", () => {
+      return request(app)
+        .patch("/api/mood_data/Tom")
+        .send({ "21/02/2023": 3 })
+        .expect(200)
+        .then((response) => {
+          const updatedMoodData = response._body.updatedMoodData.mood_data;
+          expect(updatedMoodData).toEqual([
+            { "03/02/2023": 1 },
+            { "04/02/2023": 1 },
+            { "05/02/2023": 0 },
+            { "06/02/2023": -1 },
+            { "07/02/2023": 1 },
+            { "08/02/2023": 2 },
+            { "09/02/2023": 3 },
+            { "10/02/2023": 2 },
+            { "11/02/2023": 1 },
+            { "12/02/2023": 0 },
+            { "13/02/2023": -2 },
+            { "14/02/2023": 0 },
+            { "15/02/2023": 1 },
+            { "16/02/2023": 3 },
+            { "17/02/2023": 2 },
+            { "18/02/2023": 1 },
+            { "21/02/2023": 3 },
+          ]);
+        });
+    });
+    test("Should return '400 - Bad Request' when sent an empty object on the request body", () => {
+      return request(app)
+        .patch("/api/mood_data/Tom")
+        .send({})
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe(
+            "PATCH requests must be of format { 'DD/MM/YYYY': mood }"
+          );
+        });
+    });
+    test("Should return '400 - Bad Request' when sent request body with incorrect key", () => {
+      return request(app)
+        .patch("/api/mood_data/Tom")
+        .send({ username: "Jack" })
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe(
+            "PATCH requests must be of format { 'DD/MM/YYYY': mood }"
+          );
+        });
+    });
+    test("Should return '400 - Bad Request' when sent incorrectly formatted or invalid date", () => {
+      return request(app)
+        .patch("/api/mood_data/Tom")
+        .send({ "12-34-2452": 2 })
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe(
+            "PATCH requests must be of format { 'DD/MM/YYYY': mood }"
+          );
+        });
+    });
+    test("Should return '400 - Bad Request' when sent mood data as invalid data type", () => {
+      return request(app)
+        .patch("/api/mood_data/Tom")
+        .send({ "21/02/2023": "abc" })
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe(
+            "PATCH requests must be of format { 'DD/MM/YYYY': mood }"
+          );
+        });
+    });
+    test("Should return '400 - Bad Request' when sent mood rating outside -3 to 3 window", () => {
+      return request(app)
+        .patch("/api/mood_data/Tom")
+        .send({ "21/02/2023": -4 })
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe(
+            "PATCH requests must be of format { 'DD/MM/YYYY': mood }"
+          );
+        });
+    });
+  });
 });

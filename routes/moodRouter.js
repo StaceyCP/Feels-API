@@ -1,6 +1,9 @@
 const moodRouter = require("express").Router();
-const { getMoodDataByUsername } = require("../controllers/app-controller");
+const {
+  updateMoodData,
+  getMoodDataByUsername,
+} = require("../controllers/app-controller");
 
-moodRouter.route("/:username").get(getMoodDataByUsername);
+moodRouter.route("/:username").get(getMoodDataByUsername).patch(updateMoodData);
 
 module.exports = moodRouter;
