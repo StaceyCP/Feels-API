@@ -1,7 +1,6 @@
 const Professional = require("../db/schemas/professionalSchema");
 const UserMood = require("../db/schemas/userMoodSchema");
 const User = require("../db/schemas/userSchema");
-const UserMood = require("../db/schemas/userMoodSchema");
 
 const postNewProfessional = (
   fullName,
