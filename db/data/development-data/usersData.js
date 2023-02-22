@@ -104,7 +104,7 @@ module.exports = [
       "https://upload.wikimedia.org/wikipedia/en/d/d7/Harry_Potter_character_poster.jpg",
   },
   {
-    username: "cedric",
+    username: "Cedric",
     email: "cedric_diggory@hogwarts.co.uk",
     date_of_birth: "02/06/1972",
     date_joined: "06/02/2023",
@@ -216,7 +216,7 @@ module.exports = [
       "https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
-    username: "Meridith",
+    username: "Meredith",
     email: "meredith@greysloan.com",
     date_of_birth: "30/07/1983",
     date_joined: "23/01/2023",

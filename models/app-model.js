@@ -71,6 +71,33 @@ const fetchMoodData = (username) => {
   });
 };
 
+const patchMoodData = (username, newMoodData) => {
+  const reqBodyKeys = Object.keys(newMoodData);
+  const reqBodyValues = Object.values(newMoodData);
+  const dateRegex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/g;
+  if (
+    reqBodyKeys.length === 0 ||
+    reqBodyKeys.length > 1 ||
+    !dateRegex.test(reqBodyKeys[0]) ||
+    typeof reqBodyValues[0] !== "number" ||
+    reqBodyValues[0] < -3 ||
+    reqBodyValues[0] > 3
+  ) {
+    return Promise.reject({
+      status: 400,
+      message: "PATCH requests must be of format { 'DD/MM/YYYY': mood }",
+    });
+  }
+
+  return UserMood.findOneAndUpdate(
+    { username },
+    { $push: { mood_data: newMoodData } },
+    { new: true }
+  ).then((updatedMoodData) => {
+    return updatedMoodData;
+  });
+};
+
 const addNewMoodData = async (username) => {
   const date_joined = new Date()
     .toISOString()
@@ -94,5 +121,6 @@ module.exports = {
   postNewProfessional,
   fetchMoodData,
   fetchProfessional,
+  patchMoodData,
   addNewMoodData,
 };
