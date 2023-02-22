@@ -5,6 +5,7 @@ const {
   fetchProfessional,
   fetchMoodData,
   patchMoodData,
+  addNewMoodData,
 } = require("../models/app-model");
 
 const addNewProfessional = (req, res, next) => {
@@ -83,6 +84,23 @@ const updateMoodData = (req, res, next) => {
     });
 };
 
+const postMoodData = async (req, res, next) => {
+  const {
+    body: { username },
+  } = req;
+
+  fetchUser(username)
+    .then(() => {
+      return addNewMoodData(username);
+    })
+    .then((moodData) => {
+      res.status(201).send({ moodData });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
 module.exports = {
   getUserById,
   postUser,
@@ -90,4 +108,5 @@ module.exports = {
   getProfessional,
   getMoodDataByUsername,
   updateMoodData,
+  postMoodData,
 };
