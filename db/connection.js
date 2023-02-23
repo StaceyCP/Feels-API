@@ -5,6 +5,10 @@ const url = process.env.MONG_URI;
 
 mongoose.set("strictQuery", false);
 
+if (!process.env.MONG_URI && !process.env.MONGOATLAS_URL) {
+  throw new Error("No MONGO URI set");
+}
+
 mongoose
   .connect(url)
   .then(() => {
@@ -13,6 +17,14 @@ mongoose
   .catch((err) => {
     console.log("Oops" + err);
   });
+
+// const config =
+// ENV === 'production'
+//   ? {
+//       connectionString: process.env.DATABASE_URL,
+//       max: 2,
+//     }
+//   : {};
 
 const db = mongoose.createConnection();
 
