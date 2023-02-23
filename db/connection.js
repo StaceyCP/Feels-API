@@ -12,19 +12,11 @@ if (!process.env.MONG_URI && !process.env.MONGOATLAS_URL) {
 mongoose
   .connect(url)
   .then(() => {
-    console.log("Connected to Local DB using");
+    console.log("Connected to mongoDB");
   })
   .catch((err) => {
     console.log("Oops" + err);
   });
-
-// const config =
-// ENV === 'production'
-//   ? {
-//       connectionString: process.env.DATABASE_URL,
-//       max: 2,
-//     }
-//   : {};
 
 const db = mongoose.createConnection();
 
