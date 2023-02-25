@@ -41,7 +41,6 @@ exports.getProfessional = (req, res, next) => {
 
 exports.updateProfessional = (req, res, next) => {
   const registration = req.params;
-  console.log(registration);
   const { body } = req;
   patchProfessional(registration, body).then((updatedProfessional) => {
     res.status(200).send({ updatedProfessional });

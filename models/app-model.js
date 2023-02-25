@@ -44,7 +44,6 @@ exports.patchProfessional = (registration, body) => {
     { $set: { availableHours: body.availableHours } },
     { new: true }
   ).then((updatedProfessional) => {
-    console.log(updatedProfessional);
     return updatedProfessional;
   });
 };

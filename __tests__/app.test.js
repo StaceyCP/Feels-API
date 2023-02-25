@@ -212,10 +212,6 @@ describe("Professionals Endpoints", () => {
         })
         .expect(200)
         .then((response) => {
-          console.log(
-            response._body.updatedProfessional.availableHours,
-            "<<response"
-          );
           expect(response._body.updatedProfessional.availableHours).toEqual([
             { day: "monday", hours: [8, 14] },
             { day: "tuesday", hours: [8, 20] },
