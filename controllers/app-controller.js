@@ -6,9 +6,10 @@ const {
   fetchMoodData,
   patchMoodData,
   addNewMoodData,
+  patchProfessional,
 } = require("../models/app-model");
 
-const addNewProfessional = (req, res, next) => {
+exports.addNewProfessional = (req, res, next) => {
   const { fullName, email, registrationNumber, availableHours, avatarURL } =
     req.body;
   postNewProfessional(
@@ -26,29 +27,7 @@ const addNewProfessional = (req, res, next) => {
     });
 };
 
-const getUserById = (req, res, next) => {
-  const { username } = req.params;
-  fetchUser(username)
-    .then((user) => {
-      res.status(200).send({ user });
-    })
-    .catch((err) => {
-      next(err);
-    });
-};
-
-const postUser = (req, res, next) => {
-  const { body } = req;
-  addNewUser(body)
-    .then((user) => {
-      res.status(201).send({ user });
-    })
-    .catch((err) => {
-      next(err);
-    });
-};
-
-const getProfessional = (req, res, next) => {
+exports.getProfessional = (req, res, next) => {
   const { registration } = req.params;
 
   fetchProfessional(registration)
@@ -60,7 +39,38 @@ const getProfessional = (req, res, next) => {
     });
 };
 
-const getMoodDataByUsername = (req, res, next) => {
+exports.updateProfessional = (req, res, next) => {
+  const registration = req.params;
+  console.log(registration);
+  const { body } = req;
+  patchProfessional(registration, body).then((updatedProfessional) => {
+    res.status(200).send({ updatedProfessional });
+  });
+};
+
+exports.postUser = (req, res, next) => {
+  const { body } = req;
+  addNewUser(body)
+    .then((user) => {
+      res.status(201).send({ user });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.getUserById = (req, res, next) => {
+  const { username } = req.params;
+  fetchUser(username)
+    .then((user) => {
+      res.status(200).send({ user });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.getMoodDataByUsername = (req, res, next) => {
   const { username } = req.params;
   fetchMoodData(username)
     .then((moodData) => {
@@ -71,20 +81,7 @@ const getMoodDataByUsername = (req, res, next) => {
     });
 };
 
-const updateMoodData = (req, res, next) => {
-  const { username } = req.params;
-  const { body } = req;
-
-  patchMoodData(username, body)
-    .then((updatedMoodData) => {
-      res.status(200).send({ updatedMoodData });
-    })
-    .catch((err) => {
-      next(err);
-    });
-};
-
-const postMoodData = async (req, res, next) => {
+exports.postMoodData = async (req, res, next) => {
   const {
     body: { username },
   } = req;
@@ -101,12 +98,15 @@ const postMoodData = async (req, res, next) => {
     });
 };
 
-module.exports = {
-  getUserById,
-  postUser,
-  addNewProfessional,
-  getProfessional,
-  getMoodDataByUsername,
-  updateMoodData,
-  postMoodData,
+exports.updateMoodData = (req, res, next) => {
+  const { username } = req.params;
+  const { body } = req;
+
+  patchMoodData(username, body)
+    .then((updatedMoodData) => {
+      res.status(200).send({ updatedMoodData });
+    })
+    .catch((err) => {
+      next(err);
+    });
 };
