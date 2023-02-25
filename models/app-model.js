@@ -40,7 +40,7 @@ exports.fetchProfessional = (registration) => {
 
 exports.patchProfessional = (registration, body) => {
   return Professional.findOneAndUpdate(
-    { registrationNumber: registration.registration },
+    { registrationNumber: registration },
     { $set: { availableHours: body.availableHours } },
     { new: true }
   ).then((updatedProfessional) => {

@@ -40,11 +40,19 @@ exports.getProfessional = (req, res, next) => {
 };
 
 exports.updateProfessional = (req, res, next) => {
-  const registration = req.params;
+  const { registration } = req.params;
   const { body } = req;
-  patchProfessional(registration, body).then((updatedProfessional) => {
-    res.status(200).send({ updatedProfessional });
-  });
+
+  fetchProfessional(registration)
+    .then(() => {
+      return patchProfessional(registration, body);
+    })
+    .then((updatedProfessional) => {
+      res.status(200).send({ updatedProfessional });
+    })
+    .catch((err) => {
+      next(err);
+    });
 };
 
 exports.postUser = (req, res, next) => {
@@ -100,8 +108,10 @@ exports.postMoodData = async (req, res, next) => {
 exports.updateMoodData = (req, res, next) => {
   const { username } = req.params;
   const { body } = req;
-
-  patchMoodData(username, body)
+  fetchUser(username)
+    .then(() => {
+      return patchMoodData(username, body);
+    })
     .then((updatedMoodData) => {
       res.status(200).send({ updatedMoodData });
     })

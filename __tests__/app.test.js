@@ -221,6 +221,16 @@ describe("Professionals Endpoints", () => {
           ]);
         });
     });
+    test("should return 404 if the username does not exist", () => {
+      return request(app)
+        .patch("/api/professionals/CP726398")
+        .send({ availableHours: [{ day: "monday", hours: [8, 14] }] })
+        .expect(404)
+        .then(({ body }) => {
+          const { message } = body;
+          expect(message).toBe("Professional not found");
+        });
+    });
   });
 });
 
@@ -390,6 +400,16 @@ describe("Mood Data Endpoints:", () => {
           ]);
         });
     });
+    test("should return 404 if the username does not exist", () => {
+      return request(app)
+        .patch("/api/mood_data/jhadkjhasdkjha")
+        .send({ "21/02/2023": 3 })
+        .expect(404)
+        .then(({ body }) => {
+          const { message } = body;
+          expect(message).toBe("username not found");
+        });
+    });
     test("Should return '400 - Bad Request' when sent an empty object on the request body", () => {
       return request(app)
         .patch("/api/mood_data/Tom")
@@ -446,7 +466,7 @@ describe("Mood Data Endpoints:", () => {
         });
     });
   });
-  describe("POST /api/mood_data/", () => {
+  describe("POST /api/mood_data", () => {
     it("should return 201 with the new moodData object", () => {
       const newUser = {
         username: "TestName",
