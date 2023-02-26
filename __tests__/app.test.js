@@ -195,7 +195,7 @@ describe("Professionals Endpoints", () => {
     test("should return 200 okay when sent a successful PATCH request", () => {
       return request(app)
         .patch("/api/professionals/CP871095")
-        .send({})
+        .send({ availableHours: [] })
         .expect(200);
     });
     test("should return the updated professional", () => {
@@ -229,6 +229,44 @@ describe("Professionals Endpoints", () => {
         .then(({ body }) => {
           const { message } = body;
           expect(message).toBe("Professional not found");
+        });
+    });
+    test("should return a 400 bad request error when passed an empty request body", () => {
+      return request(app)
+        .patch("/api/professionals/CP871095")
+        .send({})
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe("Bad Request!");
+        });
+    });
+    test("should return a 400 bad request error when passed a request body containing the incorrect key", () => {
+      return request(app)
+        .patch("/api/professionals/CP871095")
+        .send({ username: "Eugenie" })
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe("Bad Request!");
+        });
+    });
+    test("should return a 400 bad request error when passed a request body containing extra keys", () => {
+      return request(app)
+        .patch("/api/professionals/CP871095")
+        .send({ username: "Eugenie", availableHours: [] })
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe("Bad Request!");
+        });
+    });
+    test("should return a 400 bad request error when passed an incorrect data type to the availableHours key", () => {
+      return request(app)
+        .patch("/api/professionals/CP871095")
+        .send({
+          availableHours: { day: "monday", hours: [8, 14] },
+        })
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe("Bad Request!");
         });
     });
   });

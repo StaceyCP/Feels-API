@@ -39,6 +39,16 @@ exports.fetchProfessional = (registration) => {
 };
 
 exports.patchProfessional = (registration, body) => {
+  const reqBodyKeys = Object.keys(body);
+  const reqBodyValues = Object.values(body);
+  if (
+    reqBodyKeys.length === 0 ||
+    reqBodyKeys.length > 1 ||
+    reqBodyKeys[0] !== "availableHours" ||
+    !Array.isArray(reqBodyValues[0])
+  ) {
+    return Promise.reject({ status: 400, message: "Bad Request!" });
+  }
   return Professional.findOneAndUpdate(
     { registrationNumber: registration },
     { $set: { availableHours: body.availableHours } },
