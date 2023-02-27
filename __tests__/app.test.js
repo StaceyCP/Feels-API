@@ -13,7 +13,7 @@ afterAll(() => {
   return mongoose.connection.close();
 });
 
-describe("Professionals - end points", () => {
+describe("Professionals Endpoints", () => {
   describe("Professionals: GET requests", () => {
     test("Should return 200 status code", () => {
       return request(app).get("/api/professionals/CP871095").expect(200);
@@ -51,7 +51,7 @@ describe("Professionals - end points", () => {
     });
   });
 
-  describe("Professionals POST requests", () => {
+  describe("Professionals: POST requests", () => {
     test("should return 201 status code", () => {
       return request(app)
         .post("/api/professionals")
@@ -190,109 +190,191 @@ describe("Professionals - end points", () => {
         });
     });
   });
+
+  describe("Professionals: PATCH request", () => {
+    test("should return 200 okay when sent a successful PATCH request", () => {
+      return request(app)
+        .patch("/api/professionals/CP871095")
+        .send({ availableHours: [] })
+        .expect(200);
+    });
+    test("should return the updated professional", () => {
+      return request(app)
+        .patch("/api/professionals/CP871095")
+        .send({
+          availableHours: [
+            { day: "monday", hours: [8, 14] },
+            { day: "tuesday", hours: [8, 20] },
+            { day: "wednesday", hours: [8, 20] },
+            { day: "thursday", hours: [8, 20] },
+            { day: "friday", hours: [11, 17] },
+          ],
+        })
+        .expect(200)
+        .then((response) => {
+          expect(response._body.updatedProfessional.availableHours).toEqual([
+            { day: "monday", hours: [8, 14] },
+            { day: "tuesday", hours: [8, 20] },
+            { day: "wednesday", hours: [8, 20] },
+            { day: "thursday", hours: [8, 20] },
+            { day: "friday", hours: [11, 17] },
+          ]);
+        });
+    });
+    test("should return 404 if the username does not exist", () => {
+      return request(app)
+        .patch("/api/professionals/CP726398")
+        .send({ availableHours: [{ day: "monday", hours: [8, 14] }] })
+        .expect(404)
+        .then(({ body }) => {
+          const { message } = body;
+          expect(message).toBe("Professional not found");
+        });
+    });
+    test("should return a 400 bad request error when passed an empty request body", () => {
+      return request(app)
+        .patch("/api/professionals/CP871095")
+        .send({})
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe("Bad Request!");
+        });
+    });
+    test("should return a 400 bad request error when passed a request body containing the incorrect key", () => {
+      return request(app)
+        .patch("/api/professionals/CP871095")
+        .send({ username: "Eugenie" })
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe("Bad Request!");
+        });
+    });
+    test("should return a 400 bad request error when passed a request body containing extra keys", () => {
+      return request(app)
+        .patch("/api/professionals/CP871095")
+        .send({ username: "Eugenie", availableHours: [] })
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe("Bad Request!");
+        });
+    });
+    test("should return a 400 bad request error when passed an incorrect data type to the availableHours key", () => {
+      return request(app)
+        .patch("/api/professionals/CP871095")
+        .send({
+          availableHours: { day: "monday", hours: [8, 14] },
+        })
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe("Bad Request!");
+        });
+    });
+  });
 });
 
-describe("GET /api/users/:username", () => {
-  it("should return 200 with the correct user object", () => {
-    return request(app)
-      .get("/api/users/Tom")
-      .expect(200)
-      .then(({ body }) => {
-        const { user } = body;
-        expect(user).toHaveProperty("username", "Tom");
-        expect(user).toHaveProperty("email", "tommynook@anch.com");
-        expect(user).toHaveProperty("date_of_birth", "17/11/1999");
-        expect(user).toHaveProperty("date_joined", "03/02/2023");
-        expect(user).toHaveProperty(
-          "avatar_url",
-          "https://images.pexels.com/photos/913390/pexels-photo-913390.jpeg?auto=compress&cs=tinysrgb&w=800"
-        );
-      });
+describe("Users Endpoints", () => {
+  describe("GET /api/users/:username", () => {
+    it("should return 200 with the correct user object", () => {
+      return request(app)
+        .get("/api/users/Tom")
+        .expect(200)
+        .then(({ body }) => {
+          const { user } = body;
+          expect(user).toHaveProperty("username", "Tom");
+          expect(user).toHaveProperty("email", "tommynook@anch.com");
+          expect(user).toHaveProperty("date_of_birth", "17/11/1999");
+          expect(user).toHaveProperty("date_joined", "03/02/2023");
+          expect(user).toHaveProperty(
+            "avatar_url",
+            "https://images.pexels.com/photos/913390/pexels-photo-913390.jpeg?auto=compress&cs=tinysrgb&w=800"
+          );
+        });
+    });
+    it("should return 404 if user id is not found", () => {
+      return request(app)
+        .get("/api/users/99999")
+        .expect(404)
+        .then(({ body }) => {
+          const { message } = body;
+          expect(message).toBe("username not found");
+        });
+    });
   });
-  it("should return 404 if user id is not found", () => {
-    return request(app)
-      .get("/api/users/99999")
-      .expect(404)
-      .then(({ body }) => {
-        const { message } = body;
-        expect(message).toBe("username not found");
-      });
-  });
-});
 
-describe("POST /api/users", () => {
-  it("Should return 201 with the created user", () => {
-    const newUser = {
-      username: "TestName",
-      email: "testEmail@email.com",
-      date_of_birth: "01/01/2001",
-      avatar_url: "http://testurl.com",
-    };
-    const todayDate = new Date()
-      .toISOString()
-      .slice(0, 10)
-      .split("-")
-      .reverse()
-      .join("/");
-    return request(app)
-      .post("/api/users")
-      .send(newUser)
-      .expect(201)
-      .then(({ body }) => {
-        const { user } = body;
-        expect(user).toHaveProperty("username", "TestName");
-        expect(user).toHaveProperty("email", "testEmail@email.com");
-        expect(user).toHaveProperty("date_of_birth", "01/01/2001");
-        expect(user).toHaveProperty("avatar_url", "http://testurl.com");
-        expect(user).toHaveProperty("date_joined", todayDate);
-      });
-  });
-  it("should return 400 if the new user has missing keys", () => {
-    const newUser = {
-      username: "TestName",
-      email: "testEmail@email.com",
-      date_of_birth: "01/01/2001",
-    };
-    return request(app)
-      .post("/api/users")
-      .send(newUser)
-      .expect(400)
-      .then(({ body }) => {
-        const { message } = body;
-        expect(message).toBe("400 - Bad Request");
-      });
-  });
-  it("should return 422 error if the username is not unique", () => {
-    const newUser = {
-      username: "Tom",
-      email: "testEmail@email.com",
-      date_of_birth: "01/01/2001",
-      avatar_url: "http://testurl.com",
-    };
-    return request(app)
-      .post("/api/users")
-      .send(newUser)
-      .expect(422)
-      .then(({ body }) => {
-        const { message } = body;
-        expect(message).toBe("Key must be unique");
-      });
-  });
-  it("should return 400 error if a key has incorrect data type", () => {
-    const newUser = {
-      username: "TestUser",
-      email: { email: "testEmail@email.com" },
-      date_of_birth: "01/01/2001",
-      avatar_url: "http://testurl.com",
-    };
-    return request(app)
-      .post("/api/users")
-      .send(newUser)
-      .expect(400)
-      .then(({ body }) => {
-        const { message } = body;
-        expect(message).toBe("400 - Bad Request");
-      });
+  describe("POST /api/users", () => {
+    it("Should return 201 with the created user", () => {
+      const newUser = {
+        username: "TestName",
+        email: "testEmail@email.com",
+        date_of_birth: "01/01/2001",
+        avatar_url: "http://testurl.com",
+      };
+      const todayDate = new Date()
+        .toISOString()
+        .slice(0, 10)
+        .split("-")
+        .reverse()
+        .join("/");
+      return request(app)
+        .post("/api/users")
+        .send(newUser)
+        .expect(201)
+        .then(({ body }) => {
+          const { user } = body;
+          expect(user).toHaveProperty("username", "TestName");
+          expect(user).toHaveProperty("email", "testEmail@email.com");
+          expect(user).toHaveProperty("date_of_birth", "01/01/2001");
+          expect(user).toHaveProperty("avatar_url", "http://testurl.com");
+          expect(user).toHaveProperty("date_joined", todayDate);
+        });
+    });
+    it("should return 400 if the new user has missing keys", () => {
+      const newUser = {
+        username: "TestName",
+        email: "testEmail@email.com",
+        date_of_birth: "01/01/2001",
+      };
+      return request(app)
+        .post("/api/users")
+        .send(newUser)
+        .expect(400)
+        .then(({ body }) => {
+          const { message } = body;
+          expect(message).toBe("400 - Bad Request");
+        });
+    });
+    it("should return 422 error if the username is not unique", () => {
+      const newUser = {
+        username: "Tom",
+        email: "testEmail@email.com",
+        date_of_birth: "01/01/2001",
+        avatar_url: "http://testurl.com",
+      };
+      return request(app)
+        .post("/api/users")
+        .send(newUser)
+        .expect(422)
+        .then(({ body }) => {
+          const { message } = body;
+          expect(message).toBe("Key must be unique");
+        });
+    });
+    it("should return 400 error if a key has incorrect data type", () => {
+      const newUser = {
+        username: "TestUser",
+        email: { email: "testEmail@email.com" },
+        date_of_birth: "01/01/2001",
+        avatar_url: "http://testurl.com",
+      };
+      return request(app)
+        .post("/api/users")
+        .send(newUser)
+        .expect(400)
+        .then(({ body }) => {
+          const { message } = body;
+          expect(message).toBe("400 - Bad Request");
+        });
+    });
   });
 });
 
@@ -356,6 +438,16 @@ describe("Mood Data Endpoints:", () => {
           ]);
         });
     });
+    test("should return 404 if the username does not exist", () => {
+      return request(app)
+        .patch("/api/mood_data/jhadkjhasdkjha")
+        .send({ "21/02/2023": 3 })
+        .expect(404)
+        .then(({ body }) => {
+          const { message } = body;
+          expect(message).toBe("username not found");
+        });
+    });
     test("Should return '400 - Bad Request' when sent an empty object on the request body", () => {
       return request(app)
         .patch("/api/mood_data/Tom")
@@ -412,62 +504,61 @@ describe("Mood Data Endpoints:", () => {
         });
     });
   });
-});
+  describe("POST /api/mood_data", () => {
+    it("should return 201 with the new moodData object", () => {
+      const newUser = {
+        username: "TestName",
+        email: "testEmail@email.com",
+        date_of_birth: "01/01/2001",
+        avatar_url: "http://testurl.com",
+      };
+      const todayDate = new Date()
+        .toISOString()
+        .slice(0, 10)
+        .split("-")
+        .reverse()
+        .join("/");
 
-describe("POST /api/mood_data/", () => {
-  it("should return 201 with the new moodData object", () => {
-    const newUser = {
-      username: "TestName",
-      email: "testEmail@email.com",
-      date_of_birth: "01/01/2001",
-      avatar_url: "http://testurl.com",
-    };
-    const todayDate = new Date()
-      .toISOString()
-      .slice(0, 10)
-      .split("-")
-      .reverse()
-      .join("/");
+      return request(app)
+        .post("/api/users")
+        .send(newUser)
+        .then(() => {
+          return request(app)
+            .post("/api/mood_data")
+            .send({ username: newUser.username })
+            .expect(201);
+        })
+        .then(({ body }) => {
+          const { moodData } = body;
+          expect(moodData).toHaveProperty("username", "TestName");
+          expect(moodData).toHaveProperty("date_joined", todayDate);
+          expect(moodData).toHaveProperty("mood_data");
+          expect(moodData.mood_data).toEqual([]);
+        });
+    });
 
-    return request(app)
-      .post("/api/users")
-      .send(newUser)
-      .then(() => {
-        return request(app)
-          .post("/api/mood_data")
-          .send({ username: newUser.username })
-          .expect(201);
-      })
-      .then(({ body }) => {
-        const { moodData } = body;
-        expect(moodData).toHaveProperty("username", "TestName");
-        expect(moodData).toHaveProperty("date_joined", todayDate);
-        expect(moodData).toHaveProperty("mood_data");
-        expect(moodData.mood_data).toEqual([]);
-      });
-  });
+    it("should return 404 if the username does not exist", () => {
+      return request(app)
+        .post("/api/mood_data")
+        .send({ username: "jhadkjhasdkjha" })
+        .expect(404)
+        .then(({ body }) => {
+          const { message } = body;
+          expect(message).toBe("username not found");
+        });
+    });
 
-  it("should return 404 if the username does not exist", () => {
-    return request(app)
-      .post("/api/mood_data")
-      .send({ username: "jhadkjhasdkjha" })
-      .expect(404)
-      .then(({ body }) => {
-        const { message } = body;
-        expect(message).toBe("username not found");
-      });
-  });
-
-  it("should return 400 if the data type for username is incorrect", () => {
-    return request(app)
-      .post("/api/mood_data")
-      .send({ username: { username: "ahdsjdid" } })
-      .expect(400)
-      .then(({ body }) => {
-        const { message } = body;
-        expect(message).toBe(
-          'Cast to string failed for value "{ username: \'ahdsjdid\' }" (type Object) at path "username" for model "User"'
-        );
-      });
+    it("should return 400 if the data type for username is incorrect", () => {
+      return request(app)
+        .post("/api/mood_data")
+        .send({ username: { username: "ahdsjdid" } })
+        .expect(400)
+        .then(({ body }) => {
+          const { message } = body;
+          expect(message).toBe(
+            'Cast to string failed for value "{ username: \'ahdsjdid\' }" (type Object) at path "username" for model "User"'
+          );
+        });
+    });
   });
 });
