@@ -1,8 +1,9 @@
+const { toLocaleString } = require("../db/data/test-data/usersData");
 const Professional = require("../db/schemas/professionalSchema");
 const UserMood = require("../db/schemas/userMoodSchema");
 const User = require("../db/schemas/userSchema");
 
-const postNewProfessional = (
+exports.postNewProfessional = (
   fullName,
   email,
   registrationNumber,
@@ -24,15 +25,40 @@ const postNewProfessional = (
   }).then((newProfessional) => newProfessional);
 };
 
-const fetchUser = (username) => {
-  return User.findOne({ username }).then((user) => {
-    if (!user) {
-      return Promise.reject({ status: 404, message: "username not found" });
-    } else return user;
+exports.fetchProfessional = (registration) => {
+  return Professional.findOne({ registrationNumber: registration }).then(
+    (professional) => {
+      if (!professional) {
+        return Promise.reject({
+          status: 404,
+          message: "Professional not found",
+        });
+      } else return professional;
+    }
+  );
+};
+
+exports.patchProfessional = (registration, body) => {
+  const reqBodyKeys = Object.keys(body);
+  const reqBodyValues = Object.values(body);
+  if (
+    reqBodyKeys.length === 0 ||
+    reqBodyKeys.length > 1 ||
+    reqBodyKeys[0] !== "availableHours" ||
+    !Array.isArray(reqBodyValues[0])
+  ) {
+    return Promise.reject({ status: 400, message: "Bad Request!" });
+  }
+  return Professional.findOneAndUpdate(
+    { registrationNumber: registration },
+    { $set: { availableHours: body.availableHours } },
+    { new: true }
+  ).then((updatedProfessional) => {
+    return updatedProfessional;
   });
 };
 
-const addNewUser = async ({ username, email, date_of_birth, avatar_url }) => {
+exports.addNewUser = async ({ username, email, date_of_birth, avatar_url }) => {
   const date_joined = new Date()
     .toISOString()
     .slice(0, 10)
@@ -50,20 +76,32 @@ const addNewUser = async ({ username, email, date_of_birth, avatar_url }) => {
   return insertedUser;
 };
 
-const fetchProfessional = (registration) => {
-  return Professional.findOne({ registrationNumber: registration }).then(
-    (professional) => {
-      if (!professional) {
-        return Promise.reject({
-          status: 404,
-          message: "Professional not found",
-        });
-      } else return professional;
-    }
-  );
+exports.fetchUser = (username) => {
+  return User.findOne({ username }).then((user) => {
+    if (!user) {
+      return Promise.reject({ status: 404, message: "username not found" });
+    } else return user;
+  });
 };
 
-const fetchMoodData = (username) => {
+exports.addNewMoodData = async (username) => {
+  const date_joined = new Date()
+    .toISOString()
+    .slice(0, 10)
+    .split("-")
+    .reverse()
+    .join("/");
+  const newData = new UserMood({
+    username,
+    date_joined,
+    mood_data: [],
+  });
+
+  const insertedData = await newData.save();
+  return insertedData;
+};
+
+exports.fetchMoodData = (username) => {
   return UserMood.findOne({ username }).then((data) => {
     if (data === null)
       return Promise.reject({ status: 404, message: "username not found" });
@@ -71,7 +109,7 @@ const fetchMoodData = (username) => {
   });
 };
 
-const patchMoodData = (username, newMoodData) => {
+exports.patchMoodData = (username, newMoodData) => {
   const reqBodyKeys = Object.keys(newMoodData);
   const reqBodyValues = Object.values(newMoodData);
   const dateRegex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/g;
@@ -96,31 +134,4 @@ const patchMoodData = (username, newMoodData) => {
   ).then((updatedMoodData) => {
     return updatedMoodData;
   });
-};
-
-const addNewMoodData = async (username) => {
-  const date_joined = new Date()
-    .toISOString()
-    .slice(0, 10)
-    .split("-")
-    .reverse()
-    .join("/");
-  const newData = new UserMood({
-    username,
-    date_joined,
-    mood_data: [],
-  });
-
-  const insertedData = await newData.save();
-  return insertedData;
-};
-
-module.exports = {
-  fetchUser,
-  addNewUser,
-  postNewProfessional,
-  fetchMoodData,
-  fetchProfessional,
-  patchMoodData,
-  addNewMoodData,
 };
