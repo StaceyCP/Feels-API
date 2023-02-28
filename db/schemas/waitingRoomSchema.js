@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 const waitingRoomSchema = new Schema(
   {
     username: { type: String, required: true },
+    socketID: { type: String, required: true },
     avatar_url: { type: String, required: true },
     chatTopics: { type: String },
   },
