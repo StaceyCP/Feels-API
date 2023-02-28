@@ -9,16 +9,41 @@ app.get("/", (req, res) => {
   res.send("Feels API");
 });
 
+io.use((socket, next) => {
+  const username = socket.handshake.auth.username;
+  const fullName = socket.handshake.auth.fullName;
+  if (!username) {
+    socket.isProfessional = true;
+    socket.fullName = fullName;
+  } else if (!fullName) {
+    socket.isProfessional = false;
+    socket.username = username;
+  }
+  next();
+});
+
 io.on("connection", (socket) => {
   console.log("a user connected");
-  const users = [];
+  let users = [];
   for (let [id, socket] of io.of("/").sockets) {
+    if (socket.isProfessional) {
+      continue;
+    }
     users.push(id);
   }
   console.log(socket.id);
   socket.on("message", ({ message, recipient }) => {
+    console.log(socket.id);
     socket.to(recipient).emit("message", { message, from: socket.id });
     console.log(message, recipient);
+  });
+  socket.on("refresh", () => {
+    const newUsers = [];
+    for (let [id, socket] of io.of("/").sockets) {
+      if (socket.isProfessional) continue;
+      newUsers.push(id);
+    }
+    socket.emit("users", newUsers);
   });
   socket.emit("users", users);
 });
