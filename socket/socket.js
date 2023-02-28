@@ -11,12 +11,16 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   console.log("a user connected");
+  const users = [];
+  for (let [id, socket] of io.of("/").sockets) {
+    users.push(id);
+  }
   console.log(socket.id);
   socket.on("message", ({ message, recipient }) => {
     socket.to(recipient).emit("message", { message, from: socket.id });
     console.log(message, recipient);
   });
-  socket.emit("users", "CONNECTED");
+  socket.emit("users", users);
 });
 
 server.listen({ host: "192.168.1.70", port: 9999 }, () => {
