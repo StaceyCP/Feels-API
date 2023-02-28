@@ -17,6 +17,7 @@ io.use((socket, next) => {
     socket.fullName = fullName;
   } else if (!fullName) {
     socket.isProfessional = false;
+    socket.isWaiting = false;
     socket.username = username;
   }
   next();
@@ -33,15 +34,16 @@ io.on("connection", (socket) => {
   }
   console.log(socket.id);
   socket.on("message", ({ message, to }) => {
-    console.log(socket.id, "FROM <<<");
-    console.log(to, "to");
     io.to(to).emit("message", { message, from: socket.id });
-    console.log(message, to);
+  });
+  socket.on("waiting", () => {
+    socket.isWaiting = true;
+    console.log(socket.isWaiting);
   });
   socket.on("refresh", () => {
     const newUsers = [];
     for (let [id, socket] of io.of("/").sockets) {
-      if (socket.isProfessional) continue;
+      if (socket.isProfessional || !socket.isWaiting) continue;
       newUsers.push(id);
     }
     socket.emit("users", newUsers);
