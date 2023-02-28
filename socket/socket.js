@@ -32,10 +32,11 @@ io.on("connection", (socket) => {
     users.push(id);
   }
   console.log(socket.id);
-  socket.on("message", ({ message, recipient }) => {
-    console.log(socket.id);
-    socket.to(recipient).emit("message", { message, from: socket.id });
-    console.log(message, recipient);
+  socket.on("message", ({ message, to }) => {
+    console.log(socket.id, "FROM <<<");
+    console.log(to, "to");
+    io.to(to).emit("message", { message, from: socket.id });
+    console.log(message, to);
   });
   socket.on("refresh", () => {
     const newUsers = [];
