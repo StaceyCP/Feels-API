@@ -2,6 +2,7 @@ const { toLocaleString } = require("../db/data/test-data/usersData");
 const Professional = require("../db/schemas/professionalSchema");
 const UserMood = require("../db/schemas/userMoodSchema");
 const User = require("../db/schemas/userSchema");
+const WaitingRoom = require("../db/schemas/waitingRoomSchema");
 
 exports.postNewProfessional = (
   fullName,
@@ -134,4 +135,21 @@ exports.patchMoodData = (username, newMoodData) => {
   ).then((updatedMoodData) => {
     return updatedMoodData;
   });
+};
+
+exports.fetchWaitingRoomUsers = () => {
+  return WaitingRoom.find().then((usersInWaitingRoom) => usersInWaitingRoom);
+};
+
+exports.postWaitingRoomUser = (username, avatar_url, socketID, chatTopics) => {
+  return WaitingRoom.create({
+    username,
+    avatar_url,
+    socketID,
+    chatTopics,
+  }).then((newUserInWaitingRoom) => newUserInWaitingRoom);
+};
+
+exports.deleteUserFromWR = (username) => {
+  return WaitingRoom.findOneAndDelete({ username: username });
 };
