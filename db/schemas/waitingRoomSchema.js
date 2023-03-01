@@ -9,7 +9,7 @@ const waitingRoomSchema = new Schema(
     avatar_url: { type: String, required: true },
     chatTopics: { type: String },
     connectionID: { type: String, required: true },
-    talkingTo: { type: String || null, required: true },
+    talkingTo: { type: String || null },
     isWaiting: { type: Boolean, required: true },
     isProfessional: { type: Boolean, required: true },
   },

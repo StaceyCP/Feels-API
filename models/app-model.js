@@ -141,12 +141,25 @@ exports.fetchWaitingRoomUsers = () => {
   return WaitingRoom.find().then((usersInWaitingRoom) => usersInWaitingRoom);
 };
 
-exports.postWaitingRoomUser = (username, avatar_url, socketID, chatTopics) => {
+exports.postWaitingRoomUser = (
+  username,
+  sessionID,
+  avatar_url,
+  chatTopics,
+  connectionID,
+  talkingTo,
+  isWaiting,
+  isProfessional
+) => {
   return WaitingRoom.create({
     username,
+    sessionID,
     avatar_url,
-    socketID,
     chatTopics,
+    connectionID,
+    talkingTo,
+    isWaiting,
+    isProfessional,
   }).then((newUserInWaitingRoom) => newUserInWaitingRoom);
 };
 

@@ -563,130 +563,140 @@ describe("Mood Data Endpoints", () => {
   });
 });
 
-// describe("Waiting Room Endpoints", () => {
-//   describe("Waiting Room GET requests", () => {
-//     test("Responds with a 200 status code", () => {
-//       return request(app).get("/api/waiting_room").expect(200);
-//     });
-//     test("Responds with an array containing the users in the waiting room", () => {
-//       return request(app)
-//         .get("/api/waiting_room")
-//         .expect(200)
-//         .then((response) => {
-//           const usersInWaitingRoom = response._body.usersInWaitingRoom;
-//           expect(usersInWaitingRoom.length).toBe(3);
-//           usersInWaitingRoom.map((user) => {
-//             expect(user).toHaveProperty("_id");
-//             expect(user).toHaveProperty("username");
-//             expect(user).toHaveProperty("socketID");
-//             expect(user).toHaveProperty("avatar_url");
-//             expect(user).toHaveProperty("chatTopics");
-//             expect(user).toHaveProperty("createdAt");
-//             expect(user).toHaveProperty("updatedAt");
-//           });
-//         });
-//     });
-//   });
-//   describe("Waiting Room POST requests", () => {
-//     test("should return a 201 - created status", () => {
-//       return request(app)
-//         .post("/api/waiting_room")
-//         .send({
-//           username: "Luna",
-//           socketID: "dsn104uo5m39q329",
-//           avatar_url:
-//             "https://images.pexels.com/photos/736508/pexels-photo-736508.jpeg?auto=compress&cs=tinysrgb&w=800",
-//           chatTopics: "I miss my horses",
-//         })
-//         .expect(201);
-//     });
-//     test("should return the user that was added to the waiting room", () => {
-//       return request(app)
-//         .post("/api/waiting_room")
-//         .send({
-//           username: "Luna",
-//           socketID: "dsn104uo5m39q329",
-//           avatar_url:
-//             "https://images.pexels.com/photos/736508/pexels-photo-736508.jpeg?auto=compress&cs=tinysrgb&w=800",
-//           chatTopics: "I miss my horses",
-//         })
-//         .expect(201)
-//         .then((response) => {
-//           const userInWaitingRoom = response._body.newUserInWaitingRoom;
-//           expect(userInWaitingRoom).toHaveProperty("_id", expect.any(String));
-//           expect(userInWaitingRoom.username).toBe("Luna");
-//           expect(userInWaitingRoom.socketID).toBe("dsn104uo5m39q329");
-//           expect(userInWaitingRoom.avatar_url).toBe(
-//             "https://images.pexels.com/photos/736508/pexels-photo-736508.jpeg?auto=compress&cs=tinysrgb&w=800"
-//           );
-//           expect(userInWaitingRoom.chatTopics).toBe("I miss my horses");
-//         });
-//     });
-//     test("should return 400 when passed an empty request body", () => {
-//       return request(app)
-//         .post("/api/waiting_room")
-//         .send({})
-//         .expect(400)
-//         .then((response) => {
-//           expect(response._body.message).toBe("400 - Bad Request");
-//           expect(response._body.errorFields).toEqual([
-//             "username",
-//             "sessionID",
-//             "avatar_url",
-//             "isProfessional",
-//             "isWaiting",
-//             "talkingTo",
-//             "connectionID",
-//           ]);
-//         });
-//     });
-//     test("should return a 400 error code with the message 400 - Bad Request when passed an incomplete request body", () => {
-//       return request(app)
-//         .post("/api/waiting_room")
-//         .send({
-//           avatar_url: "testurl.com",
-//         })
-//         .expect(400)
-//         .then((response) => {
-//           expect(response._body.message).toBe("400 - Bad Request");
-//           expect(response._body.errorFields).toEqual([
-//             "username",
-//             "sessionID",
-//             "isProfessional",
-//             "isWaiting",
-//             "talkingTo",
-//             "connectionID",
-//           ]);
-//         });
-//     });
-//   });
-//   describe("Waiting Room DELETE requests", () => {
-//     test("should return 204 no content", () => {
-//       return request(app).delete("/api/waiting_room/Tom").expect(204);
-//     });
-//     test("should user is removed from Waiting Room collection", () => {
-//       return request(app)
-//         .delete("/api/waiting_room/Tom")
-//         .expect(204)
-//         .then(() => {
-//           return request(app)
-//             .get("/api/waiting_room")
-//             .then((res) => {
-//               expect(
-//                 res._body.usersInWaitingRoom.filter(
-//                   (user) => user.username === "Tom"
-//                 ).length
-//               ).toBe(0);
-//             });
-//         });
-//     });
-//     test("should user is removed from Waiting Room collection", () => {
-//       return request(app)
-//         .delete("/api/waiting_room/Timmy")
-//         .expect(204)
-//         .then((res) => {
-//           console.log(res);
-//         });
-//     });
-//   });
-// });
+describe("Waiting Room Endpoints", () => {
+  describe("Waiting Room GET requests", () => {
+    test("Responds with a 200 status code", () => {
+      return request(app).get("/api/waiting_room").expect(200);
+    });
+    test("Responds with an array containing the users in the waiting room", () => {
+      return request(app)
+        .get("/api/waiting_room")
+        .expect(200)
+        .then((response) => {
+          const usersInWaitingRoom = response._body.usersInWaitingRoom;
+          expect(usersInWaitingRoom.length).toBe(3);
+          usersInWaitingRoom.map((user) => {
+            expect(user).toHaveProperty("_id");
+            expect(user).toHaveProperty("username");
+            expect(user).toHaveProperty("sessionID");
+            expect(user).toHaveProperty("avatar_url");
+            expect(user).toHaveProperty("chatTopics");
+            expect(user).toHaveProperty("createdAt");
+            expect(user).toHaveProperty("updatedAt");
+          });
+        });
+    });
+  });
+  describe("Waiting Room POST requests", () => {
+    test("should return a 201 - created status", () => {
+      return request(app)
+        .post("/api/waiting_room")
+        .send({
+          username: "Luna",
+          sessionID: "dsn104uo5m39q329",
+          avatar_url:
+            "https://images.pexels.com/photos/736508/pexels-photo-736508.jpeg?auto=compress&cs=tinysrgb&w=800",
+          chatTopics: "I miss my horses",
+          connectionID: "567dhjbkfvggf",
+          talkingTo: null,
+          isWaiting: false,
+          isProfessional: false,
+        })
+        .expect(201);
+    });
+    test("should return the user that was added to the waiting room", () => {
+      return request(app)
+        .post("/api/waiting_room")
+        .send({
+          username: "Luna",
+          sessionID: "dsn104uo5m39q329",
+          avatar_url:
+            "https://images.pexels.com/photos/736508/pexels-photo-736508.jpeg?auto=compress&cs=tinysrgb&w=800",
+          chatTopics: "I miss my horses",
+          connectionID: "567dhjbkfvggf",
+          talkingTo: null,
+          isWaiting: false,
+          isProfessional: false,
+        })
+        .expect(201)
+        .then((response) => {
+          const userInWaitingRoom = response._body.newUserInWaitingRoom;
+          expect(userInWaitingRoom).toHaveProperty("_id", expect.any(String));
+          expect(userInWaitingRoom.username).toBe("Luna");
+          expect(userInWaitingRoom.sessionID).toBe("dsn104uo5m39q329");
+          expect(userInWaitingRoom.avatar_url).toBe(
+            "https://images.pexels.com/photos/736508/pexels-photo-736508.jpeg?auto=compress&cs=tinysrgb&w=800"
+          );
+          expect(userInWaitingRoom.chatTopics).toBe("I miss my horses");
+          expect(userInWaitingRoom.connectionID).toBe("567dhjbkfvggf");
+          expect(userInWaitingRoom.talkingTo).toBe(null);
+          expect(userInWaitingRoom.isWaiting).toBe(false);
+          expect(userInWaitingRoom.isProfessional).toBe(false);
+        });
+    });
+    test("should return 400 when passed an empty request body", () => {
+      return request(app)
+        .post("/api/waiting_room")
+        .send({})
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe("400 - Bad Request");
+          expect(response._body.errorFields).toEqual([
+            "username",
+            "sessionID",
+            "avatar_url",
+            "connectionID",
+            "isWaiting",
+            "isProfessional",
+          ]);
+        });
+    });
+    test("should return a 400 error code with the message 400 - Bad Request when passed an incomplete request body", () => {
+      return request(app)
+        .post("/api/waiting_room")
+        .send({
+          avatar_url: "testurl.com",
+        })
+        .expect(400)
+        .then((response) => {
+          expect(response._body.message).toBe("400 - Bad Request");
+          expect(response._body.errorFields).toEqual([
+            "username",
+            "sessionID",
+            "connectionID",
+            "isWaiting",
+            "isProfessional",
+          ]);
+        });
+    });
+  });
+  describe("Waiting Room DELETE requests", () => {
+    test("should return 204 no content", () => {
+      return request(app).delete("/api/waiting_room/Tom").expect(204);
+    });
+    test("should user is removed from Waiting Room collection", () => {
+      return request(app)
+        .delete("/api/waiting_room/Tom")
+        .expect(204)
+        .then(() => {
+          return request(app)
+            .get("/api/waiting_room")
+            .then((res) => {
+              expect(
+                res._body.usersInWaitingRoom.filter(
+                  (user) => user.username === "Tom"
+                ).length
+              ).toBe(0);
+            });
+        });
+    });
+    test("should user is removed from Waiting Room collection", () => {
+      return request(app)
+        .delete("/api/waiting_room/Timmy")
+        .expect(204)
+        .then((res) => {
+          console.log(res);
+        });
+    });
+  });
+});
