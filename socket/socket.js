@@ -1,9 +1,10 @@
 const http = require("http");
-
 const { app } = require("../app");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+const { InMemorySessionStore } = require("./sessionStore");
+const sessionStore = new InMemorySessionStore();
 
 app.get("/", (req, res) => {
   res.send("Feels API");
@@ -11,20 +12,26 @@ app.get("/", (req, res) => {
 
 io.use((socket, next) => {
   const sessionID = socket.handshake.auth.sessionID;
+  console.log(sessionID, "HANDSHAKE ID");
   if (sessionID) {
     const session = sessionStore.findSession(sessionID);
+    console.log(session, "SESSION STORE");
     if (session) {
+      console.log("HERE2");
       socket.sessionID = sessionID;
       if (!session.username) {
         socket.isProfessional = true;
         socket.fullName = session.fullName;
       } else if (!session.fullName) {
         socket.isProfessional = false;
-        socket.isWaiting = false;
+        socket.isWaiting = session.isWaiting;
+        socket.talkingTo = session.talkingTo;
         socket.username = session.username;
+        console.log(session.username);
       }
       socket.connectionID = session.connectionID;
-      next();
+      console.log(session.connectionID);
+      return next();
     }
   }
   const username = socket.handshake.auth.username;
@@ -35,15 +42,41 @@ io.use((socket, next) => {
   } else if (!fullName) {
     socket.isProfessional = false;
     socket.isWaiting = false;
+    socket.talkingTo = null;
     socket.username = username;
   }
-  socket.sessionID = Math.floor(Math.random() * 1000000000000000);
-  socket.connectionID = Math.floor(Math.random() * 1000000000000000);
+  console.log("GIVING RANDOM IDS");
+  socket.sessionID = Math.floor(Math.random() * 1000000000000000).toString();
+  socket.connectionID = Math.floor(Math.random() * 1000000000000000).toString();
   next();
 });
 
 io.on("connection", (socket) => {
   console.log("Successful connection");
+
+  const sessionObj = socket.fullName
+    ? { connectionID: socket.connectionID, fullName: socket.fullName }
+    : {
+        connectionID: socket.connectionID,
+        username: socket.username,
+        talkingTo: socket.talkingTo,
+        isWaiting: socket.isWaiting,
+        isProfessional: socket.isProfessional,
+      };
+
+  console.log(socket.sessionID, "In Listener");
+  sessionStore.saveSession(socket.sessionID, sessionObj);
+  console.log(sessionStore.findAllSessions());
+
+  socket.emit("session", {
+    sessionID: socket.sessionID,
+    connectionID: socket.connectionID,
+    talkingTo: socket.talkingTo,
+    isWaiting: socket.isWaiting,
+  });
+
+  socket.join(socket.connectionID);
+
   let users = [];
   for (let [id, socket] of io.of("/").sockets) {
     if (socket.isProfessional) {
@@ -53,11 +86,21 @@ io.on("connection", (socket) => {
   }
 
   socket.on("message", ({ message, to }) => {
-    io.to(to).emit("message", { message, from: socket.id });
+    socket
+      .to(to)
+      .to(socket.connectionID)
+      .emit("message", { message, from: socket.connectionID });
   });
 
   socket.on("waiting", () => {
     socket.isWaiting = true;
+  });
+
+  socket.on("matched", ({ from }) => {
+    sessionStore.saveSession(socket.sessionID, {
+      ...sessionObj,
+      talkingTo: from,
+    });
   });
 
   socket.on("refresh", () => {
@@ -72,6 +115,6 @@ io.on("connection", (socket) => {
   socket.emit("users", users);
 });
 
-server.listen({ host: "192.168.1.70", port: 9999 }, () => {
+server.listen({ host: "192.168.0.23", port: 9999 }, () => {
   console.log("listening on port 9999");
 });
