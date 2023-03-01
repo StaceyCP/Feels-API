@@ -4,7 +4,9 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 const { InMemorySessionStore } = require("./sessionStore");
+const { InMemoryMessageStore } = require("./messageStore");
 const sessionStore = new InMemorySessionStore();
+const messageStore = new InMemoryMessageStore();
 
 app.get("/", (req, res) => {
   res.send("Feels API");
@@ -83,19 +85,30 @@ io.on("connection", (socket) => {
 
   socket.join(socket.connectionID);
 
+  socket.on("addChat", (id) => {
+    const currentChats = socket.talkingTo;
+    currentChats.push(id);
+    sessionStore.saveSession(socket.sessionID, {
+      ...sessionObj,
+      talkingTo: currentChats,
+    });
+  });
+
   let users = [];
   for (let [id, socket] of io.of("/").sockets) {
     if (socket.isProfessional) {
       continue;
     }
-    users.push(id);
+    users.push(socket.connectionID);
   }
 
   socket.on("message", ({ message, to }) => {
+    const newMessage = { message, from: socket.connectionID, to };
     socket
       .to(to)
       .to(socket.connectionID)
       .emit("message", { message, from: socket.connectionID });
+    messageStore.saveMessage(newMessage);
   });
 
   socket.on("waiting", () => {
@@ -113,7 +126,7 @@ io.on("connection", (socket) => {
     const newUsers = [];
     for (let [id, socket] of io.of("/").sockets) {
       if (socket.isProfessional || !socket.isWaiting) continue;
-      newUsers.push(id);
+      newUsers.push(socket.connectionID);
     }
     socket.emit("users", newUsers);
   });
