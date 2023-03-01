@@ -20,6 +20,7 @@ io.use((socket, next) => {
       console.log("HERE2");
       socket.sessionID = sessionID;
       if (!session.username) {
+        socket.talkingTo = session.talkingTo;
         socket.isProfessional = true;
         socket.fullName = session.fullName;
       } else if (!session.fullName) {
@@ -37,6 +38,7 @@ io.use((socket, next) => {
   const username = socket.handshake.auth.username;
   const fullName = socket.handshake.auth.fullName;
   if (!username) {
+    socket.talkingTo = [];
     socket.isProfessional = true;
     socket.fullName = fullName;
   } else if (!fullName) {
@@ -55,7 +57,11 @@ io.on("connection", (socket) => {
   console.log("Successful connection");
 
   const sessionObj = socket.fullName
-    ? { connectionID: socket.connectionID, fullName: socket.fullName }
+    ? {
+        connectionID: socket.connectionID,
+        fullName: socket.fullName,
+        talkingTo: socket.talkingTo,
+      }
     : {
         connectionID: socket.connectionID,
         username: socket.username,
@@ -115,6 +121,6 @@ io.on("connection", (socket) => {
   socket.emit("users", users);
 });
 
-server.listen({ host: "192.168.0.23", port: 9999 }, () => {
+server.listen({ host: "192.168.1.70", port: 9999 }, () => {
   console.log("listening on port 9999");
 });
