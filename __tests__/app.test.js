@@ -578,7 +578,7 @@ describe("Waiting Room Endpoints", () => {
           usersInWaitingRoom.map((user) => {
             expect(user).toHaveProperty("_id");
             expect(user).toHaveProperty("username");
-            expect(user).toHaveProperty("socketID");
+            expect(user).toHaveProperty("sessionID");
             expect(user).toHaveProperty("avatar_url");
             expect(user).toHaveProperty("chatTopics");
             expect(user).toHaveProperty("createdAt");
@@ -593,10 +593,14 @@ describe("Waiting Room Endpoints", () => {
         .post("/api/waiting_room")
         .send({
           username: "Luna",
-          socketID: "dsn104uo5m39q329",
+          sessionID: "dsn104uo5m39q329",
           avatar_url:
             "https://images.pexels.com/photos/736508/pexels-photo-736508.jpeg?auto=compress&cs=tinysrgb&w=800",
           chatTopics: "I miss my horses",
+          connectionID: "567dhjbkfvggf",
+          talkingTo: null,
+          isWaiting: false,
+          isProfessional: false,
         })
         .expect(201);
     });
@@ -605,21 +609,29 @@ describe("Waiting Room Endpoints", () => {
         .post("/api/waiting_room")
         .send({
           username: "Luna",
-          socketID: "dsn104uo5m39q329",
+          sessionID: "dsn104uo5m39q329",
           avatar_url:
             "https://images.pexels.com/photos/736508/pexels-photo-736508.jpeg?auto=compress&cs=tinysrgb&w=800",
           chatTopics: "I miss my horses",
+          connectionID: "567dhjbkfvggf",
+          talkingTo: null,
+          isWaiting: false,
+          isProfessional: false,
         })
         .expect(201)
         .then((response) => {
           const userInWaitingRoom = response._body.newUserInWaitingRoom;
           expect(userInWaitingRoom).toHaveProperty("_id", expect.any(String));
           expect(userInWaitingRoom.username).toBe("Luna");
-          expect(userInWaitingRoom.socketID).toBe("dsn104uo5m39q329");
+          expect(userInWaitingRoom.sessionID).toBe("dsn104uo5m39q329");
           expect(userInWaitingRoom.avatar_url).toBe(
             "https://images.pexels.com/photos/736508/pexels-photo-736508.jpeg?auto=compress&cs=tinysrgb&w=800"
           );
           expect(userInWaitingRoom.chatTopics).toBe("I miss my horses");
+          expect(userInWaitingRoom.connectionID).toBe("567dhjbkfvggf");
+          expect(userInWaitingRoom.talkingTo).toBe(null);
+          expect(userInWaitingRoom.isWaiting).toBe(false);
+          expect(userInWaitingRoom.isProfessional).toBe(false);
         });
     });
     test("should return 400 when passed an empty request body", () => {
@@ -631,8 +643,11 @@ describe("Waiting Room Endpoints", () => {
           expect(response._body.message).toBe("400 - Bad Request");
           expect(response._body.errorFields).toEqual([
             "username",
-            "socketID",
+            "sessionID",
             "avatar_url",
+            "connectionID",
+            "isWaiting",
+            "isProfessional",
           ]);
         });
     });
@@ -645,7 +660,13 @@ describe("Waiting Room Endpoints", () => {
         .expect(400)
         .then((response) => {
           expect(response._body.message).toBe("400 - Bad Request");
-          expect(response._body.errorFields).toEqual(["username", "socketID"]);
+          expect(response._body.errorFields).toEqual([
+            "username",
+            "sessionID",
+            "connectionID",
+            "isWaiting",
+            "isProfessional",
+          ]);
         });
     });
   });

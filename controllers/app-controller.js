@@ -134,8 +134,26 @@ exports.getWaitingRoomUsers = (req, res, next) => {
 };
 
 exports.addWaitingRoomUser = (req, res, next) => {
-  const { username, avatar_url, socketID, chatTopics } = req.body;
-  postWaitingRoomUser(username, avatar_url, socketID, chatTopics)
+  const {
+    username,
+    sessionID,
+    avatar_url,
+    chatTopics,
+    connectionID,
+    talkingTo,
+    isWaiting,
+    isProfessional,
+  } = req.body;
+  postWaitingRoomUser(
+    username,
+    sessionID,
+    avatar_url,
+    chatTopics,
+    connectionID,
+    talkingTo,
+    isWaiting,
+    isProfessional
+  )
     .then((newUserInWaitingRoom) => {
       res.status(201).send({ newUserInWaitingRoom });
     })
