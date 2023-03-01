@@ -94,20 +94,42 @@ io.on("connection", (socket) => {
     });
   });
 
-  let users = [];
-  for (let [id, socket] of io.of("/").sockets) {
-    if (socket.isProfessional) {
-      continue;
+  socket.on("getHelpChat", (chat) => {
+    const specificMessages = messageStore
+      .findMessagesForUser(socket.connectionID)
+      .filter((message) => {
+        return message.from === chat || message.to === chat;
+      });
+    socket.emit("oldMessages", specificMessages);
+  });
+
+  const users = [];
+  const userMessages = new Map();
+  messageStore.findMessagesForUser(socket.connectionID).forEach((message) => {
+    const { from, to } = message;
+    const otherUser = socket.connectionID === from ? to : from;
+    if (userMessages.has(otherUser)) {
+      userMessages.get(otherUser).push(message);
+    } else {
+      userMessages.set(otherUser, [message]);
     }
-    users.push(socket.connectionID);
-  }
+  });
+
+  sessionStore.findAllSessions().forEach((session) => {
+    users.push(session.connectionID);
+  });
+  socket.on("getOldMessages", () => {
+    socket.emit(
+      "oldMessages",
+      messageStore.findMessagesForUser(socket.connectionID)
+    );
+  });
+
+  console.log(messageStore.findMessagesForUser(socket.connectionID));
 
   socket.on("message", ({ message, to }) => {
     const newMessage = { message, from: socket.connectionID, to };
-    socket
-      .to(to)
-      .to(socket.connectionID)
-      .emit("message", { message, from: socket.connectionID });
+    socket.to(to).to(socket.connectionID).emit("message", newMessage);
     messageStore.saveMessage(newMessage);
   });
 
