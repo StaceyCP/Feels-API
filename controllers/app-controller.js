@@ -7,6 +7,9 @@ const {
   patchMoodData,
   addNewMoodData,
   patchProfessional,
+  fetchWaitingRoomUsers,
+  postWaitingRoomUser,
+  deleteUserFromWR,
 } = require("../models/app-model");
 
 exports.addNewProfessional = (req, res, next) => {
@@ -114,6 +117,38 @@ exports.updateMoodData = (req, res, next) => {
     })
     .then((updatedMoodData) => {
       res.status(200).send({ updatedMoodData });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.getWaitingRoomUsers = (req, res, next) => {
+  fetchWaitingRoomUsers()
+    .then((usersInWaitingRoom) => {
+      res.status(200).send({ usersInWaitingRoom });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.addWaitingRoomUser = (req, res, next) => {
+  const { username, avatar_url, socketID, chatTopics } = req.body;
+  postWaitingRoomUser(username, avatar_url, socketID, chatTopics)
+    .then((newUserInWaitingRoom) => {
+      res.status(201).send({ newUserInWaitingRoom });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.removeUserFromWR = (req, res, next) => {
+  const { username } = req.params;
+  deleteUserFromWR(username)
+    .then(() => {
+      res.status(204).send();
     })
     .catch((err) => {
       next(err);
