@@ -3,6 +3,7 @@ const User = require("../schemas/userSchema");
 const Professional = require("../schemas/professionalSchema");
 const UserMood = require("../schemas/userMoodSchema");
 const WaitingRoom = require("../schemas/waitingRoomSchema");
+const Messages = require("../schemas/messagesSchema");
 
 async function seed({
   professionalsData,
@@ -15,6 +16,7 @@ async function seed({
     await Professional.deleteMany({});
     await UserMood.deleteMany({});
     await WaitingRoom.deleteMany({});
+    await Messages.deleteMany({});
     await User.insertMany(usersData);
     await Professional.insertMany(professionalsData);
     await UserMood.insertMany(moodTrackingData);

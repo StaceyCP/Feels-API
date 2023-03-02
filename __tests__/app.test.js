@@ -646,7 +646,6 @@ describe("Waiting Room Endpoints", () => {
             "sessionID",
             "avatar_url",
             "connectionID",
-            "isWaiting",
             "isProfessional",
           ]);
         });
@@ -664,7 +663,6 @@ describe("Waiting Room Endpoints", () => {
             "username",
             "sessionID",
             "connectionID",
-            "isWaiting",
             "isProfessional",
           ]);
         });
@@ -674,7 +672,7 @@ describe("Waiting Room Endpoints", () => {
     test("should return 204 no content", () => {
       return request(app).delete("/api/waiting_room/Tom").expect(204);
     });
-    test("should user is removed from Waiting Room collection", () => {
+    test("user is removed from Waiting Room collection", () => {
       return request(app)
         .delete("/api/waiting_room/Tom")
         .expect(204)
@@ -688,14 +686,6 @@ describe("Waiting Room Endpoints", () => {
                 ).length
               ).toBe(0);
             });
-        });
-    });
-    test("should user is removed from Waiting Room collection", () => {
-      return request(app)
-        .delete("/api/waiting_room/Timmy")
-        .expect(204)
-        .then((res) => {
-          console.log(res);
         });
     });
   });

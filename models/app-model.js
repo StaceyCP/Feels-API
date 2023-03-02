@@ -1,4 +1,5 @@
 const { toLocaleString } = require("../db/data/test-data/usersData");
+const Messages = require("../db/schemas/messagesSchema");
 const Professional = require("../db/schemas/professionalSchema");
 const UserMood = require("../db/schemas/userMoodSchema");
 const User = require("../db/schemas/userSchema");
@@ -165,4 +166,12 @@ exports.postWaitingRoomUser = (
 
 exports.deleteUserFromWR = (username) => {
   return WaitingRoom.findOneAndDelete({ username: username });
+};
+
+exports.postMessage = (message) => {
+  return Messages.create(message);
+};
+
+exports.getAllMessages = () => {
+  return Messages.find();
 };
