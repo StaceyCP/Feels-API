@@ -182,12 +182,15 @@ io.on("connection", async (socket) => {
     postMessage(newMessage);
   });
 
-  socket.on("waiting", () => {
+  socket.on("waiting", (chatTopics) => {
+    console.log(sessionObj, "IN WAITING OBJ");
+    console.log(chatTopics, "TOPICS");
     sessionStore.saveSessionAndPost(
       socket.sessionID,
       {
         ...sessionObj,
         isWaiting: true,
+        chatTopics,
       },
       socket
     );
