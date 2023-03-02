@@ -646,7 +646,6 @@ describe("Waiting Room Endpoints", () => {
             "sessionID",
             "avatar_url",
             "connectionID",
-            "isWaiting",
             "isProfessional",
           ]);
         });
@@ -664,7 +663,6 @@ describe("Waiting Room Endpoints", () => {
             "username",
             "sessionID",
             "connectionID",
-            "isWaiting",
             "isProfessional",
           ]);
         });

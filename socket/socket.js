@@ -162,7 +162,7 @@ io.on("connection", async (socket) => {
       .filter((message) => {
         return message.from === chat || message.to === chat;
       });
-    socket.emit("oldMessages", specificMessages);
+    socket.emit("oldMessages", { messages: specificMessages, other: chat });
   });
 
   const userMessages = new Map();
@@ -221,10 +221,14 @@ io.on("connection", async (socket) => {
   });
 
   socket.on("getOldMessages", () => {
-    socket.emit(
-      "oldMessages",
-      messageStore.findMessagesForUser(socket.connectionID)
-    );
+    const oldMessages = messageStore.findMessagesForUser(socket.connectionID);
+    let other;
+    if (oldMessages.length !== 0)
+      other =
+        oldMessages[0].to === socket.connectionID
+          ? oldMessages[0].from
+          : oldMessages[0].to;
+    socket.emit("oldMessages", { messages: oldMessages, other });
   });
 
   socket.on("getTalkingTo", () => {
