@@ -96,7 +96,6 @@ io.use(async (socket, next) => {
     socket.avatar_url = userData.avatar_url;
     socket.chatTopics = "";
   }
-  console.log("GIVING RANDOM IDS");
   socket.sessionID = Math.floor(Math.random() * 1000000000000000).toString();
   socket.connectionID = Math.floor(Math.random() * 1000000000000000).toString();
   next();
@@ -125,7 +124,7 @@ io.on("connection", async (socket) => {
 
   sessionStore.saveSessionAndPost(socket.sessionID, sessionObj, socket);
 
-  console.log(sessionStore.findAllSessions());
+  // console.log(sessionStore.findAllSessions());
 
   socket.emit("session", {
     sessionID: socket.sessionID,
@@ -222,13 +221,7 @@ io.on("connection", async (socket) => {
 
   socket.on("getOldMessages", () => {
     const oldMessages = messageStore.findMessagesForUser(socket.connectionID);
-    let other;
-    if (oldMessages.length !== 0)
-      other =
-        oldMessages[0].to === socket.connectionID
-          ? oldMessages[0].from
-          : oldMessages[0].to;
-    socket.emit("oldMessages", { messages: oldMessages, other });
+    socket.emit("oldMessages", { messages: oldMessages });
   });
 
   socket.on("getTalkingTo", () => {
