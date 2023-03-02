@@ -1,3 +1,5 @@
+const { postWaitingRoomUser } = require("../models/app-model");
+
 /* abstract */ class SessionStore {
   findSession(id) {}
   saveSession(id, session) {}
@@ -15,6 +17,24 @@ class InMemorySessionStore extends SessionStore {
   }
 
   saveSession(id, session) {
+    this.sessions.set(id, session);
+  }
+
+  saveSessionAndPost(id, session, socket) {
+    const sessionStoreUsername = socket.username
+      ? socket.username
+      : socket.fullName;
+    postWaitingRoomUser(
+      sessionStoreUsername,
+      socket.sessionID,
+      socket.avatar_url,
+      socket.chatTopics,
+      socket.connectionID,
+      socket.talkingTo,
+      socket.isWaiting,
+      socket.isProfessional
+    );
+
     this.sessions.set(id, session);
   }
 
