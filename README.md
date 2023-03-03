@@ -24,7 +24,7 @@ https://feels-api.onrender.com/api/
 
 ## Installation Guide
 
-1. Clone this repository to your local machine via your terminal using command _'git clone https://github.com/StaceyCP/Feels-API'_ in your chosen directory location.
+1. Clone this repository to your local machine via your terminal using command _'git clone https://github.com/StaceyCP/Feels-API.git'_ in your chosen directory location.
 
 2. Run _'npm install'_ to install all dependencies. You will need:
 
